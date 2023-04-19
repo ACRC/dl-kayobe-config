@@ -14,13 +14,17 @@ overcloud_group_hosts_map:
     - "controller1"
     - "controller2"
   compute_cpu:
-    - "compute000"
-    - "compute001"
-    - "compute002"
+    - "compute00"
+    - "compute01"
+    - "compute02"
+    - "compute03"
+    - "compute04"
+    - "compute05"
+    - "compute06"
+    - "compute07"
   compute_gpu:
-    - "computegpu000"
-    - "computegpu001"
-    - "computegpu002"
+    - "computegpu00"
+    - "computegpu01"
 
 # To prevent some network issues you can choose to disable cloud-init
 #disable_cloud_init:

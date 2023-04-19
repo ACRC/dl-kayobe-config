@@ -1,10 +1,10 @@
 ---
 kolla_enable_cinder: true
+kolla_enable_cinder_backup: true
 kolla_enable_ovn: true
 
 # TBD
 # kolla_enable_barbican: true
-# kolla_enable_cinder_backup: true
 # kolla_enable_cloudkitty: true
 # kolla_enable_designate: true
 # kolla_enable_manila: true

@@ -15,9 +15,13 @@ power_mgmt_net_ips:
   compute00: 192.168.2.19
   compute01: 192.168.2.20
   compute02: 192.168.2.21
+  compute03: 192.168.2.22
+  compute04: 192.168.2.23
+  compute05: 192.168.2.24
+  compute06: 192.168.2.25
+  compute07: 192.168.2.26
   computegpu00: 192.168.2.16
   computegpu01: 192.168.2.17
-  computegpu02: 192.168.2.18
   controller0: 192.168.2.13
   controller1: 192.168.2.14
   controller2: 192.168.2.15
@@ -30,9 +34,13 @@ provision_ctl_net_ips:
   compute00: 192.168.3.19
   compute01: 192.168.3.20
   compute02: 192.168.3.21
+  compute03: 192.168.3.22
+  compute04: 192.168.3.23
+  compute05: 192.168.3.24
+  compute06: 192.168.3.25
+  compute07: 192.168.3.26
   computegpu00: 192.168.3.16
   computegpu01: 192.168.3.17
-  computegpu02: 192.168.3.18
   controller0: 192.168.3.13
   controller1: 192.168.3.14
   controller2: 192.168.3.15
@@ -45,9 +53,13 @@ storage_net_ips:
   compute00: 192.168.5.19
   compute01: 192.168.5.20
   compute02: 192.168.5.21
+  compute03: 192.168.5.22
+  compute04: 192.168.5.23
+  compute05: 192.168.5.24
+  compute06: 192.168.5.25
+  compute07: 192.168.5.26
   computegpu00: 192.168.5.16
   computegpu01: 192.168.5.17
-  computegpu02: 192.168.5.18
   controller0: 192.168.5.13
   controller1: 192.168.5.14
   controller2: 192.168.5.15
@@ -62,9 +74,13 @@ tenant_tunnel_net_ips:
   compute00: 192.168.7.19
   compute01: 192.168.7.20
   compute02: 192.168.7.21
+  compute03: 192.168.7.22
+  compute04: 192.168.7.23
+  compute05: 192.168.7.24
+  compute06: 192.168.7.25
+  compute07: 192.168.7.26
   computegpu00: 192.168.7.16
   computegpu01: 192.168.7.17
-  computegpu02: 192.168.7.18
   controller0: 192.168.7.13
   controller1: 192.168.7.14
   controller2: 192.168.7.15
@@ -72,9 +88,13 @@ internal_net_ips:
   compute00: 192.168.4.19
   compute01: 192.168.4.20
   compute02: 192.168.4.21
+  compute03: 192.168.4.22
+  compute04: 192.168.4.23
+  compute05: 192.168.4.24
+  compute06: 192.168.4.25
+  compute07: 192.168.4.26
   computegpu00: 192.168.4.16
   computegpu01: 192.168.4.17
-  computegpu02: 192.168.4.18
   controller0: 192.168.4.13
   controller1: 192.168.4.14
   controller2: 192.168.4.15
