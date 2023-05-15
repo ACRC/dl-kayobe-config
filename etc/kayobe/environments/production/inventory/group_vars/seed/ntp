@@ -23,10 +23,15 @@
 #         val: 3
 #
 chrony_ntp_servers:
-  - server: 192.
-  - server: 192.
-  - server: 192.
-  - server: 192.
+  - server: ntp0.services.bris.ac.uk
+    options:
+      - option: iburst
+  - server: ntp1.services.bris.ac.uk
+    options:
+      - option: iburst
+  - server: ntp2.services.bris.ac.uk
+    options:
+      - option: iburst
 
 ###############################################################################
 # Dummy variable to allow Ansible to accept this file.

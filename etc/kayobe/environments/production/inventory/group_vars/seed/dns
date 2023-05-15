@@ -6,14 +6,12 @@
 resolv_is_managed: True
 
 # List of DNS nameservers.
-# 192. - dns1.bris.ac.uk
-# 192. - dns2.bris.ac.uk
 resolv_nameservers:
-  - "192."
-  - "192."
+  - "137.222.0.36"
+  - "137.222.0.39"
 
 # DNS domain suffix.
-resolv_domain: ".bris.ac.uk"
+# resolv_domain:
 
 # List of DNS search suffixes.
 #resolv_search:
