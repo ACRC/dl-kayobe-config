@@ -47,12 +47,14 @@
 
 # OS distribution name. Valid options are "centos", "rocky", "ubuntu". Default
 # is "centos".
-#os_distribution:
+os_distribution: "ubuntu"
 
 # OS release. Valid options are "8-stream" when os_distribution is "centos", or
 # "8" when os_distribution is "rocky", or "focal" and "jammy" when
 # os_distribution is "ubuntu".
-#os_release:
+
+# TODO(mattcrees): Change to "focal" if 22.04 support is not ready in time.
+os_release: "jammy"
 
 ###############################################################################
 # Ansible configuration.

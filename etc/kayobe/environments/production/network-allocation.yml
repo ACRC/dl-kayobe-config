@@ -1,0 +1,100 @@
+---
+external_admin_net_ips:
+  ansible:
+  seed:
+  wazuh:
+external_intranet_net_ips:
+  ansible:
+external_internet_net_ips:
+  controller0:
+  controller1:
+  controller2:
+power_mgmt_net_ips:
+  ansible-bmc: 192.168.2.10
+  ansible: 192.168.2.11
+  compute00: 192.168.2.19
+  compute01: 192.168.2.20
+  compute02: 192.168.2.21
+  compute03: 192.168.2.22
+  compute04: 192.168.2.23
+  compute05: 192.168.2.24
+  compute06: 192.168.2.25
+  compute07: 192.168.2.26
+  computegpu00: 192.168.2.16
+  computegpu01: 192.168.2.17
+  controller0: 192.168.2.13
+  controller1: 192.168.2.14
+  controller2: 192.168.2.15
+  seed: 192.168.2.12
+  hs-switch00: 192.168.2.1
+  hs-switch01: 192.168.2.2
+  mgmt-switch00: 192.168.2.3
+provision_ctl_net_ips:
+  ansible: 192.168.3.11
+  compute00: 192.168.3.19
+  compute01: 192.168.3.20
+  compute02: 192.168.3.21
+  compute03: 192.168.3.22
+  compute04: 192.168.3.23
+  compute05: 192.168.3.24
+  compute06: 192.168.3.25
+  compute07: 192.168.3.26
+  computegpu00: 192.168.3.16
+  computegpu01: 192.168.3.17
+  controller0: 192.168.3.13
+  controller1: 192.168.3.14
+  controller2: 192.168.3.15
+  seed: 192.168.3.12
+storage_mgmt_net_ips:
+  controller0: 192.168.6.13
+  controller1: 192.168.6.14
+  controller2: 192.168.6.15
+storage_net_ips:
+  compute00: 192.168.5.19
+  compute01: 192.168.5.20
+  compute02: 192.168.5.21
+  compute03: 192.168.5.22
+  compute04: 192.168.5.23
+  compute05: 192.168.5.24
+  compute06: 192.168.5.25
+  compute07: 192.168.5.26
+  computegpu00: 192.168.5.16
+  computegpu01: 192.168.5.17
+  controller0: 192.168.5.13
+  controller1: 192.168.5.14
+  controller2: 192.168.5.15
+# switch_loopback_net_ips:
+
+# switch_p2p_net_ips: null  # workload provider net?
+external_ceph_net_ips:
+  controller0: 172.16.0.1
+  controller1: 172.16.0.2
+  controller2: 172.16.0.3
+tenant_tunnel_net_ips:
+  compute00: 192.168.7.19
+  compute01: 192.168.7.20
+  compute02: 192.168.7.21
+  compute03: 192.168.7.22
+  compute04: 192.168.7.23
+  compute05: 192.168.7.24
+  compute06: 192.168.7.25
+  compute07: 192.168.7.26
+  computegpu00: 192.168.7.16
+  computegpu01: 192.168.7.17
+  controller0: 192.168.7.13
+  controller1: 192.168.7.14
+  controller2: 192.168.7.15
+internal_net_ips:
+  compute00: 192.168.4.19
+  compute01: 192.168.4.20
+  compute02: 192.168.4.21
+  compute03: 192.168.4.22
+  compute04: 192.168.4.23
+  compute05: 192.168.4.24
+  compute06: 192.168.4.25
+  compute07: 192.168.4.26
+  computegpu00: 192.168.4.16
+  computegpu01: 192.168.4.17
+  controller0: 192.168.4.13
+  controller1: 192.168.4.14
+  controller2: 192.168.4.15

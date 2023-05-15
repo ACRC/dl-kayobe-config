@@ -1,0 +1,28 @@
+---
+###############################################################################
+# DNS for Seed Node
+
+# Whether kayobe should configure resolv.conf.
+resolv_is_managed: True
+
+# List of DNS nameservers.
+resolv_nameservers:
+  - "137.222.0.36"
+  - "137.222.0.39"
+
+# DNS domain suffix.
+# resolv_domain:
+
+# List of DNS search suffixes.
+#resolv_search:
+
+# List of IP address and netmask pairs to sort addresses returned by
+# gethostbyname.
+#resolv_sortlist:
+
+# List of DNS options.
+#resolv_options:
+
+###############################################################################
+# Dummy variable to allow Ansible to accept this file.
+workaround_ansible_issue_8743: yes

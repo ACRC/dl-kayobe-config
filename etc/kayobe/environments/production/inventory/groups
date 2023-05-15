@@ -1,0 +1,15 @@
+[cephmon]
+[cephosd]
+[storage]
+
+[mons:children]
+cephmon
+
+[mgrs:children]
+storage
+
+[osds:children]
+cephosd
+
+[rgws:children]
+cephosd
