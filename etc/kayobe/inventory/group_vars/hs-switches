@@ -1,0 +1,226 @@
+---
+###############################################################################
+# Global configuration.
+
+# All switches are running the Dell OS10 switch OS
+switch_type: dellos10
+ansible_user: "{{ secrets_switch_admin_user }}"
+ansible_ssh_pass: "{{ secrets_switch_admin_password }}"
+switch_auth_pass: omit
+
+switch_config: "{{ switch_config_nested | flatten }}"
+
+switch_config_nested:
+  - "{{ switch_config_hostname }}"
+  - "{{ switch_config_lldp }}"
+  - "{{ switch_config_ntp }}"
+  - "{{ switch_config_spanning_tree }}"
+  - "{{ switch_config_breakout }}"
+  - "{{ switch_config_vlt }}"
+  - "{{ switch_config_portchannel_fwddecl }}"
+
+switch_interface_config: >-
+  {{ switch_interface_config_vlans |
+     combine(switch_interface_config_bonds) |
+     combine(switch_interface_config_ethernet) }}
+
+switch_fabric_mtu: 9216
+switch_lacp_port_priority: 32768
+switch_clear_vlans: false
+
+###############################################################################
+# Interface configuration.
+
+# Interface configuration. Dict mapping switch interface names to configuration
+# dicts. Each dict contains a description item and a 'config' item which should
+# contain a list of per-interface configuration.
+switch_interface_config_ethernet: {}
+switch_interface_config_bonds: {}
+
+# Use an additional indirection here to enable parameter expansion
+switch_interface_config_vlans_template: |-
+  vlan {{ internal_net_name | net_vlan }}:
+    description: Internal-API
+    config:
+      - no shutdown
+  vlan {{ storage_net_vlan }}:
+    description: Ceph-storage
+    config:
+      - no shutdown
+      - mtu {{ storage_net_mtu }}
+  vlan {{ storage_mgmt_net_vlan }}:
+    description: Ceph-StorageManagement
+    config:
+      - no shutdown
+      - mtu {{ storage_mgmt_net_mtu }}
+  vlan {{ tenant_tunnel_net_vlan }}:
+    description: GENEVE-tunnel
+    config:
+      - no shutdown
+      - mtu {{ tenant_tunnel_net_mtu }}
+  vlan {{ provision_ctl_net_vlan }}:
+    description: Provision-Control
+    config:
+      - no shutdown
+      - mtu {{ provision_ctl_net_mtu }}
+  vlan {{ external_internet_vlan }}:
+    description: External-Internet
+    config:
+      - no shutdown
+      - mtu {{ external_internet_mtu }}
+  vlan {{ external_intranet_vlan }}:
+    description: External-Intranet
+    config:
+      - no shutdown
+      - mtu {{ external_intranet_mtu }}
+
+switch_interface_config_vlans: "{{ switch_interface_config_vlans_template | from_yaml }}"
+
+
+###############################################################################
+# Interface variables and templates.
+
+# Member of a port-channel for the high-speed and provision-ctl networks (also used for VLTi links)
+switch_interface_config_lag_member_template: |-
+  - no shutdown
+  - lacp port-priority {{ switch_lacp_port_priority }}
+  - no switchport
+  - mtu {{ switch_fabric_mtu }}
+  - flowcontrol receive on
+  - flowcontrol transmit on
+  - lldp tlv-select basic-tlv management-address port-description system-name
+  - lldp tlv-select dcbxp
+  - channel-group %(channel)s mode active
+
+# OpenStack compute hypervisor data interface configuration
+switch_interface_config_lag_member: "{{ switch_interface_config_lag_member_template | from_yaml }}"
+
+# Bonded Ethernet interface configuration
+switch_interface_config_lag_template: |
+  - no shutdown
+  - mtu {{ switch_fabric_mtu }}
+  - switchport mode trunk
+  - "{{ 'no switchport trunk allowed vlan 1-4093' if switch_clear_vlans else '' }}"
+  - "{{ 'no switchport access vlan' if switch_clear_vlans else '' }}"
+  - spanning-tree port type edge
+
+# VLT inter-switch links
+switch_interface_config_vlti:
+  - no shutdown
+  - no switchport
+
+# OpenStack Controller port channel configuration
+switch_interface_config_controller_hs_template: |-
+  {{ switch_interface_config_lag_template }}
+  - no switchport access vlan
+  - switchport trunk allowed vlan {{ switch_controller_trunk_hs_vlans | unique | join(',') }}
+
+switch_interface_config_controller_hs: "{{ switch_interface_config_controller_hs_template | from_yaml }}"
+
+
+switch_interface_config_compute_hs_template: |-
+  {{ switch_interface_config_lag_template }}
+  - switchport trunk allowed vlan {{ switch_compute_trunk_hs_vlans | unique | join(',') }}
+
+# OpenStack compute hypervisor data interface configuration
+switch_interface_config_compute_hs: "{{ switch_interface_config_compute_hs_template | from_yaml }}"
+
+
+switch_interface_config_compute_ctl_template: |-
+  {{ switch_interface_config_lag_template }}
+  - lacp fallback enable
+  - lacp fallback timeout 5
+  - switchport trunk allowed vlan {{ switch_compute_trunk_ctl_vlans | unique | join(',') }}
+
+# OpenStack compute hypervisor Provision/Control interface configuration
+switch_interface_config_compute_ctl: "{{ switch_interface_config_compute_ctl_template | from_yaml }}"
+
+switch_interface_config_controller_ctl_template: |-
+  {{ switch_interface_config_lag_template }}
+  - lacp fallback enable
+  - lacp fallback timeout 5
+  - switchport trunk allowed vlan {{ switch_controller_trunk_ctl_vlans | unique | join(',') }}
+
+# OpenStack controller Provision/Control interface configuration
+switch_interface_config_controller_ctl: "{{ switch_interface_config_controller_ctl_template | from_yaml }}"
+
+################################################################################
+# Port VLAN memberships
+
+# VLANs to trunk to controllers on the high-speed interface
+switch_controller_trunk_hs_vlans:
+  - "{{ internal_net_vlan }}"
+  - "{{ storage_net_vlan }}"
+  - "{{ storage_mgmt_net_vlan }}"
+  - "{{ tenant_tunnel_net_vlan }}"
+# - "{{ provider_vlans_physnet1.start }}-{{ provider_vlans_physnet1.end }}"
+
+# VLANs to trunk to controllers on the provision/ctl interface interface
+switch_controller_trunk_ctl_vlans:
+  - "{{ provision_ctl_net_vlan }}"
+  - "{{ external_internet_vlan }}"
+  - "{{ external_intranet_vlan }}"
+
+# VLANs to trunk to compute nodes on the high-speed interface
+switch_compute_trunk_hs_vlans:
+  - "{{ internal_net_vlan }}"
+  - "{{ tenant_tunnel_net_vlan }}"
+  - "{{ storage_net_vlan }}"
+# - "{{ provider_vlans_physnet1.start }}-{{ provider_vlans_physnet1.end }}"
+
+# VLANs to trunk to compute nodes on the provision/ctl interface
+switch_compute_trunk_ctl_vlans:
+  - "{{ provision_ctl_net_vlan }}"
+  - "{{ external_internet_vlan }}"
+  - "{{ external_intranet_vlan }}"
+
+###############################################################################
+# Switch global config
+
+# Switch hostname
+switch_config_hostname:
+  - "hostname {{ inventory_hostname }}"
+
+# Enable Rapid PVST
+switch_config_spanning_tree:
+  - "spanning-tree mode rstp"
+
+# LLDP configuration.
+switch_config_lldp:
+  - "lldp enable"
+
+# Switch management timekeeping
+switch_config_ntp:
+  - "ntp server ntp0.services.bris.ac.uk"
+  - "ntp server ntp1.services.bris.ac.uk"
+  - "ntp server ntp2.services.bris.ac.uk"
+
+# Port breakouts.
+switch_config_breakout: []
+
+switch_config_vlt:
+  - "interface {{ switch_vlti_interface_1 }}"
+  - " no switchport"
+  - " no shutdown"
+  - "interface {{ switch_vlti_interface_2 }}"
+  - " no switchport"
+  - " no shutdown"
+  - "vlt-domain {{ switch_vlt_domain }}"
+  - " primary-priority {{ switch_vlt_priority }}"
+  # VLT MAC must begin with 02, 06:, 0A:, or 0E.
+  # Leaf pairs should use the same MAC.
+  - " vlt-mac {{ switch_vlt_mac }}"
+  - " delay-restore 120"
+  - " discovery-interface {{ switch_vlti_interface_1 }}"
+  - " discovery-interface {{ switch_vlti_interface_2 }}"
+
+
+switch_config_portchannel_fwddecl_template: |-
+  {% set result = [] %}
+  {%- for intf in switch_interface_config_bonds.keys() -%}
+  {% set _ = result.append('interface ' ~ intf) %}
+  {%- endfor -%}
+  {{ result }}
+
+switch_config_portchannel_fwddecl: "{{ switch_config_portchannel_fwddecl_template | from_yaml }}"
+

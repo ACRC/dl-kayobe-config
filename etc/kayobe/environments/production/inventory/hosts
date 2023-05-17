@@ -4,4 +4,8 @@
 ansible ansible_host=#squid
 
 [seed]
-seed
+dl-seed
+
+[hs-switches]
+DL-100G-SW1
+DL-100G-SW2
