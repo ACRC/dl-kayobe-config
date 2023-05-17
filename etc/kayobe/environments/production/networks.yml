@@ -4,62 +4,48 @@
 ###############################################################################
 # Network definitions.
 
-# Switch point-to-point fabric underlay
-# switch_p2p_net_cidr: "10.106.8.0/24"
-
-# Switch loopback network
-# switch_loopback_net_cidr: "10.106.10.0/24"
-
-# switch_vrf1_vlan: 460
-# switch_vrf2_vlan: 461
-
-# High-speed bond network configuration
-# hs_bond_A_mtu: 9192
-# hs_bond_B_mtu: 9192
-
-
 # Power/Management network IP information.
-power_mgmt_net_cidr: "192.168.2.0/24"
-power_mgmt_net_allocation_pool_start: "192.168.2.10"
-power_mgmt_net_allocation_pool_end: "192.168.2.255"
-power_mgmt_net_vlan: 2
+power_mgmt_net_cidr: "10.129.24.0/24"
+power_mgmt_net_allocation_pool_start: "10.129.24.10"
+power_mgmt_net_allocation_pool_end: "10.129.24.250"
+power_mgmt_net_vlan: 2802
 power_mgmt_net_mtu: 1500
 
 # Provisioning/Control network IP information.
-provision_ctl_net_cidr: "192.168.3.0/24"
-provision_ctl_net_allocation_pool_start: "192.168.2.10"
-provision_ctl_net_allocation_pool_end: "192.168.2.255"
-# provision_ctl_net_inspection_allocation_pool_start: "10.106.15.0"
-# provision_ctl_net_inspection_allocation_pool_end: "10.106.15.250"
+provision_ctl_net_cidr: "10.129.28.0/24"
+provision_ctl_net_allocation_pool_start: "10.129.28.10"
+provision_ctl_net_allocation_pool_end: "10.129.28.127"
+provision_ctl_net_inspection_allocation_pool_start: "10.129.28.128"
+provision_ctl_net_inspection_allocation_pool_end: "10.129.28.250"
 provision_ctl_net_vlan: 3
 provision_ctl_net_mtu: 1500
 
 # Internal API network IP information.
-internal_net_vip_address: "192.168.4.2"
-internal_net_cidr: "192.168.4.0/24"
-internal_net_allocation_pool_start: "192.168.4.10"
-internal_net_allocation_pool_end: "192.168.4.250"
+internal_net_vip_address: "10.129.30.2"
+internal_net_cidr: "10.129.30.0/24"
+internal_net_allocation_pool_start: "10.129.30.10"
+internal_net_allocation_pool_end: "10.129.30.250"
 internal_net_vlan: 4
 internal_net_mtu: 9000
 
 # Storage network IP information.
-storage_net_cidr: "192.168.5.0/24"
-storage_net_allocation_pool_start: "192.168.5.10"
-storage_net_allocation_pool_end: "192.168.5.250"
+storage_net_cidr: "10.129.27.0/24"
+storage_net_allocation_pool_start: "10.129.27.10"
+storage_net_allocation_pool_end: "10.129.27.250"
 storage_net_vlan: 5
 storage_net_mtu: 9000
 
 # Storage Management network IP information.
-storage_mgmt_net_cidr: "192.168.6.0/24"
-storage_mgmt_net_allocation_pool_start: "192.168.6.10"
-storage_mgmt_net_allocation_pool_end: "192.168.6.250"
+storage_mgmt_net_cidr: "10.129.26.0/24"
+storage_mgmt_net_allocation_pool_start: "10.129.26.10"
+storage_mgmt_net_allocation_pool_end: "10.129.26.250"
 storage_mgmt_net_vlan: 6
 storage_mgmt_net_mtu: 9000
 
 # Tenant/Tunnel network IP information.
-tenant_tunnel_net_cidr: "192.168.7.0/24"
-tenant_tunnel_net_allocation_pool_start: "192.168.7.10"
-tenant_tunnel_net_allocation_pool_end: "192.168.7.250"
+tenant_tunnel_net_cidr: "10.129.29.0/24"
+tenant_tunnel_net_allocation_pool_start: "10.129.29.10"
+tenant_tunnel_net_allocation_pool_end: "10.129.29.250"
 tenant_tunnel_net_vlan: 7
 tenant_tunnel_net_mtu: 9150
 
@@ -72,34 +58,34 @@ external_ceph_net_vlan: 8
 external_ceph_net_mtu: 9000
 
 # External/Admin network IP information.
-external_admin_net_cidr: 
-external_admin_net_allocation_pool_start: 
-external_admin_net_allocation_pool_end: 
-external_admin_net_vlan: 
+external_admin_net_cidr: "10.129.25.0/24"
+external_admin_net_allocation_pool_start: "10.129.25.10"
+external_admin_net_allocation_pool_end: "10.129.25.240"
+external_admin_net_vlan: 2801
 external_admin_net_mtu: 1500
-external_admin_net_gateway: 
+external_admin_net_gateway: "10.129.25.246"
 
 # External/Intranet network IP information.
 # There aren't any control plane hosts bound to this network
-external_intranet_net_cidr: 
-external_intranet_net_vlan: 
-external_intranet_net_mtu: 1500
-external_intranet_net_gateway: 
+external_intranet_cidr: "10.129.32.0/24"
+external_intranet_vlan: 2804
+external_intranet_mtu: 1500
+external_intranet_gateway: "10.129.32.1"
 
 # External/Internet network IP information.
 # OpenStack PublicAPI hosts sit at bottom of this subnet
-external_internet_net_fqdn: 
-external_internet_net_cidr: 
-external_internet_net_allocation_pool_start: 
-external_internet_net_allocation_pool_end: 
-external_internet_net_vlan: 
-external_internet_net_mtu: 1500
-external_internet_net_gateway: 
+# FIXME: placeholder content
+external_internet_fqdn: "placeholder.bristol.ac.uk"
+external_internet_cidr: "10.129.31.0/24"
+external_internet_allocation_pool_start: "10.129.31.10"
+external_internet_allocation_pool_end: "10.129.31.240"
+external_internet_vlan: 2803
+external_internet_mtu: 1500
+external_internet_gateway: "10.129.31.254"
 # VIP address for public API endpoints.
-external_internet_net_vip_address: 
+external_internet_vip_address: "10.129.31.1"
 # FQDN address for public API endpoints, registered with the external DNS
 # server to resolve to the public VIP address.
-#external_internet_net_fqdn:
 
 # Workload proviver network?
 
