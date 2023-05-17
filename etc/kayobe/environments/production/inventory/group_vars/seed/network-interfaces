@@ -1,0 +1,16 @@
+---
+###############################################################################
+# Network interface definitions for the seed group.
+
+# Overcloud provisioning network IP information.
+provision_ctl_net_interface: "ens3"
+
+# External/Admin network IP information.
+external_admin_net_interface: "ens2"
+
+# Power/Management network IP information
+power_mgmt_net_interface: "{{ external_admin_net_interface }}.{{ power_mgmt_net_vlan }}"
+
+###############################################################################
+# Dummy variable to allow Ansible to accept this file.
+workaround_ansible_issue_8743: yes

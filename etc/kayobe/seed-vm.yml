@@ -33,7 +33,7 @@
 # or
 # "https://cloud.centos.org/centos/8-stream/x86_64/images/CentOS-Stream-GenericCloud-8-20220913.0.x86_64.qcow2"
 # otherwise.
-#seed_vm_root_image:
+seed_vm_root_image: "https://cloud-images.ubuntu.com/jammy/current/jammy-server-cloudimg-amd64.img"
 
 # Capacity of the seed VM data volume.
 #seed_vm_data_capacity:
@@ -55,7 +55,9 @@
 #     source:
 #       dev: eth1
 #
-#seed_vm_interfaces:
+seed_vm_interfaces:
+  - network: "external_admin_net"
+  - network: "provision_ctl_net"
 
 ###############################################################################
 # Dummy variable to allow Ansible to accept this file.
