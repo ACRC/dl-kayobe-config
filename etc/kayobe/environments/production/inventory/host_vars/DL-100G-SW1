@@ -1,0 +1,20 @@
+---
+# Switch configuration for S5232F switch DL-100G-SW1
+
+###############################################################################
+# Switch credentials.
+
+# Host/IP on which to access the switch via SSH.
+ansible_host: 10.129.24.244
+ansible_user: "{{ secrets_switch_admin_user }}"
+ansible_ssh_password: "{{ secrets_switch_admin_password }}"
+
+###############################################################################
+# Multi-chassis config
+
+switch_vlt_domain: 1
+switch_vlt_priority: 1
+switch_vlt_mac: "00:01:01:02:02:02"
+switch_vlti_interface_1: "Eth 1/1/31"
+switch_vlti_interface_2: "Eth 1/1/32"
+switch_lacp_port_priority: 1000

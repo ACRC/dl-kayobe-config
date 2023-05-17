@@ -1,0 +1,184 @@
+---
+###############################################################################
+# Interface configuration.
+# The 2 high-speed switches in production environment have identical connections
+switch_interface_config_bonds:
+  "port-channel 1":
+    description: "compute1"
+    config: "{{ switch_interface_config_compute_hs | format(channel=1) }}"
+  "port-channel 2":
+    description: "compute2"
+    config: "{{ switch_interface_config_compute_hs | format(channel=2) }}"
+  "port-channel 3":
+    description: "compute3"
+    config: "{{ switch_interface_config_compute_hs | format(channel=3) }}"
+  "port-channel 4":
+    description: "compute4"
+    config: "{{ switch_interface_config_compute_hs | format(channel=4) }}"
+  "port-channel 5":
+    description: "compute5"
+    config: "{{ switch_interface_config_compute_hs | format(channel=5) }}"
+  "port-channel 6":
+    description: "compute6"
+    config: "{{ switch_interface_config_compute_hs | format(channel=6) }}"
+  "port-channel 7":
+    description: "compute7"
+    config: "{{ switch_interface_config_compute_hs | format(channel=7) }}"
+  "port-channel 8":
+    description: "compute8"
+    config: "{{ switch_interface_config_compute_hs | format(channel=8) }}"
+  "port-channel 9":
+    description: "gpu1"
+    config: "{{ switch_interface_config_compute_hs | format(channel=9) }}"
+  "port-channel 10":
+    description: "gpu2"
+    config: "{{ switch_interface_config_compute_hs | format(channel=10) }}"
+  # OpenStack controllers (also Ceph storage nodes)
+  "port-channel 11":
+    description: "controller1"
+    config: "{{ switch_interface_config_controller_hs | format(channel=11)  }}"
+  "port-channel 12":
+    description: "controller2"
+    config: "{{ switch_interface_config_controller_hs | format(channel=12) }}"
+  "port-channel 13":
+    description: "controller3"
+    config: "{{ switch_interface_config_controller_hs | format(channel=13) }}"
+  "port-channel 14":
+    description: "controller4"
+    config: "{{ switch_interface_config_controller_hs | format(channel=14) }}"
+  "port-channel 15":
+    description: "compute7"
+    config: "{{ switch_interface_config_compute_ctl | format(channel=15) }}"
+  "port-channel 16":
+    description: "compute6"
+    config: "{{ switch_interface_config_compute_ctl | format(channel=16) }}"
+  "port-channel 17":
+    description: "compute5"
+    config: "{{ switch_interface_config_compute_ctl | format(channel=17) }}"
+  "port-channel 18":
+    description: "compute4"
+    config: "{{ switch_interface_config_compute_ctl | format(channel=18) }}"
+  "port-channel 19":
+    description: "controller2"
+    config: "{{ switch_interface_config_controller_ctl | format(channel=19) }}"
+  "port-channel 20":
+    description: "controller3"
+    config: "{{ switch_interface_config_controller_ctl | format(channel=20) }}"
+  "port-channel 21":
+    description: "controller4"
+    config: "{{ switch_interface_config_controller_ctl | format(channel=21) }}"
+  "port-channel 22":
+    description: "compute3"
+    config: "{{ switch_interface_config_controller_ctl | format(channel=22) }}"
+  "port-channel 23":
+    description: "compute2"
+    config: "{{ switch_interface_config_controller_ctl | format(channel=23) }}"
+  "port-channel 24":
+    description: "compute1"
+    config: "{{ switch_interface_config_controller_ctl | format(channel=24) }}"
+  "port-channel 25":
+    description: "dl-ansible-01"
+    config: "{{ switch_interface_config_controller_ctl | format(channel=25) }}"
+  "port-channel 26":
+    description: "compute8"
+    config: "{{ switch_interface_config_controller_ctl | format(channel=26) }}"
+  "port-channel 27":
+    description: "gpu2"
+    config: "{{ switch_interface_config_controller_ctl | format(channel=27) }}"
+  "port-channel 28":
+    description: "gpu1"
+    config: "{{ switch_interface_config_controller_ctl | format(channel=28) }}"
+  "port-channel 29":
+    description: "controller1"
+    config: "{{ switch_interface_config_controller_ctl | format(channel=29) }}"
+
+switch_interface_config_ethernet:
+  "Ethernet 1/1/1":
+    description: "compute1"
+    config: "{{ switch_interface_config_lag_member | format(channel=1) }}"
+  "Ethernet 1/1/2":
+    description: "compute2"
+    config: "{{ switch_interface_config_lag_member | format(channel=2) }}"
+  "Ethernet 1/1/3":
+    description: "compute3"
+    config: "{{ switch_interface_config_lag_member | format(channel=3) }}"
+  "Ethernet 1/1/4":
+    description: "compute4"
+    config: "{{ switch_interface_config_lag_member | format(channel=4) }}"
+  "Ethernet 1/1/5":
+    description: "compute5"
+    config: "{{ switch_interface_config_lag_member | format(channel=5) }}"
+  "Ethernet 1/1/6":
+    description: "compute6"
+    config: "{{ switch_interface_config_lag_member | format(channel=6) }}"
+  "Ethernet 1/1/7":
+    description: "compute7"
+    config: "{{ switch_interface_config_lag_member | format(channel=7) }}"
+  "Ethernet 1/1/8":
+    description: "compute8"
+    config: "{{ switch_interface_config_lag_member | format(channel=8) }}"
+  "Ethernet 1/1/9":
+    description: "gpu1"
+    config: "{{ switch_interface_config_lag_member | format(channel=9) }}"
+  "Ethernet 1/1/10":
+    description: "gpu2"
+    config: "{{ switch_interface_config_lag_member | format(channel=10) }}"
+  # OpenStack controllers (also Ceph storage nodes)
+  "Ethernet 1/1/11":
+    description: "controller1"
+    config: "{{ switch_interface_config_lag_member | format(channel=11)  }}"
+  "Ethernet 1/1/12":
+    description: "controller2"
+    config: "{{ switch_interface_config_lag_member | format(channel=12) }}"
+  "Ethernet 1/1/13":
+    description: "controller3"
+    config: "{{ switch_interface_config_lag_member | format(channel=13) }}"
+  "Ethernet 1/1/14":
+    description: "controller4"
+    config: "{{ switch_interface_config_lag_member | format(channel=14) }}"
+  "Ethernet 1/1/27:1":
+    description: "compute7"
+    config: "{{ switch_interface_config_lag_member | format(channel=15) }}"
+  "Ethernet 1/1/27:2":
+    description: "compute6"
+    config: "{{ switch_interface_config_lag_member | format(channel=16) }}"
+  "Ethernet 1/1/27:3":
+    description: "compute5"
+    config: "{{ switch_interface_config_lag_member | format(channel=17) }}"
+  "Ethernet 1/1/27:4":
+    description: "compute4"
+    config: "{{ switch_interface_config_lag_member | format(channel=18) }}"
+  "Ethernet 1/1/28:1":
+    description: "controller2"
+    config: "{{ switch_interface_config_lag_member | format(channel=19) }}"
+  "Ethernet 1/1/28:2":
+    description: "controller3"
+    config: "{{ switch_interface_config_lag_member | format(channel=20) }}"
+  "Ethernet 1/1/28:3":
+    description: "controller4"
+    config: "{{ switch_interface_config_lag_member | format(channel=21) }}"
+  # No connection to Ethernet 1/1/27:4
+  "Ethernet 1/1/29:1":
+    description: "compute3"
+    config: "{{ switch_interface_config_lag_member | format(channel=22) }}"
+  "Ethernet 1/1/29:2":
+    description: "compute2"
+    config: "{{ switch_interface_config_lag_member | format(channel=23) }}"
+  "Ethernet 1/1/29:3":
+    description: "compute1"
+    config: "{{ switch_interface_config_lag_member | format(channel=24) }}"
+  "Ethernet 1/1/29:4":
+    description: "dl-ansible-01"
+    config: "{{ switch_interface_config_lag_member | format(channel=25) }}"
+  "Ethernet 1/1/30:1":
+    description: "compute8"
+    config: "{{ switch_interface_config_lag_member | format(channel=26) }}"
+  "Ethernet 1/1/30:2":
+    description: "gpu2"
+    config: "{{ switch_interface_config_lag_member | format(channel=27) }}"
+  "Ethernet 1/1/30:3":
+    description: "gpu1"
+    config: "{{ switch_interface_config_lag_member | format(channel=28) }}"
+  "Ethernet 1/1/30:4":
+    description: "controller1"
+    config: "{{ switch_interface_config_lag_member | format(channel=29) }}"
