@@ -1,7 +1,7 @@
 # Kayobe hosts inventory file.
 
 [seed-hypervisor]
-ansible ansible_host=#squid
+dl-ansible-01
 
 [seed]
 dl-seed
