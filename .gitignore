@@ -50,3 +50,7 @@ etc/kayobe/environments/aufn-ceph/kolla/config/cinder/ceph.conf
 etc/kayobe/environments/aufn-ceph/kolla/config/cinder/ceph.client.glance.keyring
 etc/kayobe/environments/aufn-ceph/kolla/config/nova/ceph.conf
 etc/kayobe/environments/aufn-ceph/kolla/config/nova/ceph.client.glance.keyring
+
+# Ansible roles and collections
+etc/kayobe/ansible/collections/
+etc/kayobe/ansible/roles/
