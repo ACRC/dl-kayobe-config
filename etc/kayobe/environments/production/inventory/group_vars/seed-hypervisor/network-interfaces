@@ -1,0 +1,34 @@
+---
+###############################################################################
+# Network interface definitions for the seed group.
+
+mgmt_bond_ext_interface: "bond0"
+mgmt_bond_ext_bond_mode: "802.3ad"
+mgmt_bond_ext_bond_xmit_hash_policy: "layer3+4"
+mgmt_bond_ext_bond_slaves:
+ - "enp65s0f0np0"
+ - "enp65s0f1np1"
+
+mgmt_bond_int_interface: "bond1"
+mgmt_bond_int_bond_mode: "802.3ad"
+mgmt_bond_int_bond_xmit_hash_policy: "layer3+4"
+mgmt_bond_int_bond_slaves:
+  - "enp2s0f0np0"
+  - "enp2s0f1np1"
+
+# Overcloud provisioning network IP information.
+provision_ctl_net_interface: "br{{ mgmt_bond_int_interface }}"
+provision_ctl_net_bridge_ports:
+  - "{{ mgmt_bond_int_interface }}"
+
+# External/Admin network IP information.
+external_admin_net_interface: "br{{ mgmt_bond_ext_interface }}"
+external_admin_net_bridge_ports:
+  - "{{ mgmt_bond_ext_interface }}"
+
+# Power/Management network IP information
+power_mgmt_net_interface: "{{ external_admin_net_interface }}.{{ power_mgmt_net_vlan }}"
+
+###############################################################################
+# Dummy variable to allow Ansible to accept this file.
+workaround_ansible_issue_8743: yes

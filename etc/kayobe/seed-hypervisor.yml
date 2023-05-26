@@ -4,7 +4,7 @@
 
 # User with which to access the seed hypervisor via SSH during bootstrap, in
 # order to setup the Kayobe user account. Default is {{ os_distribution }}.
-#seed_hypervisor_bootstrap_user:
+seed_hypervisor_bootstrap_user: "{{ lookup('env', 'USER') }}"
 
 ###############################################################################
 # Seed hypervisor network interface configuration.
@@ -16,7 +16,9 @@
 #seed_hypervisor_default_network_interfaces:
 
 # List of extra networks to which seed hypervisor nodes are attached.
-#seed_hypervisor_extra_network_interfaces:
+seed_hypervisor_extra_network_interfaces:
+  - "mgmt_bond_ext"
+  - "mgmt_bond_int"
 
 # Whether to enable SNAT on seed hypervisor node. Default is false.
 #seed_hypervisor_enable_snat:
@@ -39,7 +41,24 @@
 # List of seed hypervisor volume groups. See mrlesmithjr.manage-lvm role for
 # format. Set to "{{ seed_hypervisor_lvm_groups_with_data }}" to create a
 # volume group for libvirt storage.
-#seed_hypervisor_lvm_groups:
+seed_hypervisor_lvm_groups:
+  - vgname: "ubuntu-vg"
+    disks:
+      - "/dev/sda3"
+    create: true
+    lvnames:
+      - lvname: "ubuntu-lv"
+        size: 100.0g
+        create: true
+        filesystem: ext4
+        mount: true
+        mntp: /
+      - lvname: lv_swap
+        size: 16g
+        create: true
+      - lvname: lv_libvirt
+        size: 500.0g
+        create: true
 
 # Suggested list of seed hypervisor volume groups for libvirt. Not used by
 # default.
@@ -56,7 +75,7 @@
 #seed_hypervisor_lvm_group_data_lvs:
 
 # Libvirt storage LVM backing volume.
-#seed_hypervisor_lvm_group_data_lv_libvirt_storage:
+seed_hypervisor_lvm_group_data_lv_libvirt_storage: "lv_libvirt"
 
 # Size of libvirt storage LVM backing volume.
 #seed_hypervisor_lvm_group_data_lv_libvirt_storage_size:

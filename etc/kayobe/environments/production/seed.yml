@@ -1,0 +1,3 @@
+---
+# HTTP(S) requests from control plane hosts.
+seed_squid_container_enabled: True
