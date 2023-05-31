@@ -10,21 +10,23 @@
 # should not be added to the inventory.
 overcloud_group_hosts_map:
   controllers:
-    - "controller0"
     - "controller1"
     - "controller2"
-  compute_cpu:
-    - "compute00"
-    - "compute01"
-    - "compute02"
-    - "compute03"
-    - "compute04"
-    - "compute05"
-    - "compute06"
-    - "compute07"
+    - "controller3"
+  compute:
+    - "compute1"
+    - "compute2"
+    - "compute3"
+    - "compute4"
+    - "compute5"
+    - "compute6"
+    - "compute7"
+    - "compute8"
   compute_gpu:
-    - "computegpu00"
-    - "computegpu01"
+    - "gpu1"
+    - "gpu2"
+  storage:
+    - "controller4"
 
 # To prevent some network issues you can choose to disable cloud-init
 #disable_cloud_init:
