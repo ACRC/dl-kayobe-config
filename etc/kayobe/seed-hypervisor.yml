@@ -19,6 +19,7 @@ seed_hypervisor_bootstrap_user: "{{ lookup('env', 'USER') }}"
 seed_hypervisor_extra_network_interfaces:
   - "mgmt_bond_ext"
   - "mgmt_bond_int"
+  - "external_admin_net"
 
 # Whether to enable SNAT on seed hypervisor node. Default is false.
 #seed_hypervisor_enable_snat:
