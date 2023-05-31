@@ -130,6 +130,7 @@ switch_interface_config_compute_ctl_template: |-
   {{ switch_interface_config_lag_template }}
   - lacp fallback enable
   - lacp fallback timeout 5
+  - switchport access vlan {{ provision_ctl_net_vlan }}
   - switchport trunk allowed vlan {{ switch_compute_trunk_ctl_vlans | unique | join(',') }}
 
 # OpenStack compute hypervisor Provision/Control interface configuration
@@ -139,6 +140,7 @@ switch_interface_config_controller_ctl_template: |-
   {{ switch_interface_config_lag_template }}
   - lacp fallback enable
   - lacp fallback timeout 5
+  - switchport access vlan {{ provision_ctl_net_vlan }}
   - switchport trunk allowed vlan {{ switch_controller_trunk_ctl_vlans | unique | join(',') }}
 
 # OpenStack controller Provision/Control interface configuration
@@ -157,7 +159,7 @@ switch_controller_trunk_hs_vlans:
 
 # VLANs to trunk to controllers on the provision/ctl interface interface
 switch_controller_trunk_ctl_vlans:
-  - "{{ provision_ctl_net_vlan }}"
+#  - "{{ provision_ctl_net_vlan }}"
   - "{{ external_internet_vlan }}"
   - "{{ external_intranet_vlan }}"
 
@@ -170,7 +172,7 @@ switch_compute_trunk_hs_vlans:
 
 # VLANs to trunk to compute nodes on the provision/ctl interface
 switch_compute_trunk_ctl_vlans:
-  - "{{ provision_ctl_net_vlan }}"
+#  - "{{ provision_ctl_net_vlan }}"
   - "{{ external_internet_vlan }}"
   - "{{ external_intranet_vlan }}"
 

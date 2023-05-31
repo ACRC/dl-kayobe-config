@@ -69,25 +69,25 @@ switch_interface_config_bonds:
     config: "{{ switch_interface_config_controller_ctl | format(channel=21) }}"
   "port-channel 22":
     description: "compute3"
-    config: "{{ switch_interface_config_controller_ctl | format(channel=22) }}"
+    config: "{{ switch_interface_config_compute_ctl | format(channel=22) }}"
   "port-channel 23":
     description: "compute2"
-    config: "{{ switch_interface_config_controller_ctl | format(channel=23) }}"
+    config: "{{ switch_interface_config_compute_ctl | format(channel=23) }}"
   "port-channel 24":
     description: "compute1"
-    config: "{{ switch_interface_config_controller_ctl | format(channel=24) }}"
+    config: "{{ switch_interface_config_compute_ctl | format(channel=24) }}"
   "port-channel 25":
     description: "dl-ansible-01"
     config: "{{ switch_interface_config_controller_ctl | format(channel=25) }}"
   "port-channel 26":
     description: "compute8"
-    config: "{{ switch_interface_config_controller_ctl | format(channel=26) }}"
+    config: "{{ switch_interface_config_compute_ctl | format(channel=26) }}"
   "port-channel 27":
-    description: "gpu2"
-    config: "{{ switch_interface_config_controller_ctl | format(channel=27) }}"
-  "port-channel 28":
     description: "gpu1"
-    config: "{{ switch_interface_config_controller_ctl | format(channel=28) }}"
+    config: "{{ switch_interface_config_compute_ctl | format(channel=27) }}"
+  "port-channel 28":
+    description: "gpu2"
+    config: "{{ switch_interface_config_compute_ctl | format(channel=28) }}"
   "port-channel 29":
     description: "controller1"
     config: "{{ switch_interface_config_controller_ctl | format(channel=29) }}"
@@ -174,10 +174,10 @@ switch_interface_config_ethernet:
     description: "compute8"
     config: "{{ switch_interface_config_lag_member | format(channel=26) }}"
   "Ethernet 1/1/30:2":
-    description: "gpu2"
+    description: "gpu1"
     config: "{{ switch_interface_config_lag_member | format(channel=27) }}"
   "Ethernet 1/1/30:3":
-    description: "gpu1"
+    description: "gpu2"
     config: "{{ switch_interface_config_lag_member | format(channel=28) }}"
   "Ethernet 1/1/30:4":
     description: "controller1"
