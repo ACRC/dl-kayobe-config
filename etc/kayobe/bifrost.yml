@@ -79,7 +79,8 @@ kolla_bifrost_source_version: "{{ stackhpc_bifrost_source_version }}"
 
 # List of extra kernel parameters for Bifrost's Ironic PXE configuration.
 # Default is empty.
-#kolla_bifrost_extra_kernel_options:
+kolla_bifrost_extra_kernel_options:
+  - "ipa-ntp-server={{ provision_ctl_net_ips['dl-seed'] }}"
 
 ###############################################################################
 # Ironic Inspector configuration.
@@ -100,15 +101,74 @@ kolla_bifrost_source_version: "{{ stackhpc_bifrost_source_version }}"
 # List of introspection rules for Bifrost's Ironic Inspector service.
 #kolla_bifrost_inspector_rules:
 
+inspector_rule_var_redfish_verify_ca: "False"
+inspector_rule_var_redfish_username: "{{ inspector_rule_var_ipmi_username }}"
+inspector_rule_var_redfish_password: "{{ inspector_rule_var_ipmi_password }}"
+
+# Redfish rules
+# Ironic inspector rule to set Redfish credentials.
+inspector_rule_redfish_credentials:
+  description: "Set Redfish driver_info if no credentials"
+  conditions:
+    - field: "node://driver_info.redfish_username"
+      op: "is-empty"
+    - field: "node://driver_info.redfish_password"
+      op: "is-empty"
+  actions:
+    - action: "set-attribute"
+      path: "driver_info/redfish_username"
+      value: "{{ inspector_rule_var_redfish_username }}"
+    - action: "set-attribute"
+      path: "driver_info/redfish_password"
+      value: "{{ inspector_rule_var_redfish_password }}"
+
+inspector_rule_redfish_address:
+  description: "Set Redfish address"
+  conditions:
+    - field: "node://driver_info.redfish_address"
+      op: "is-empty"
+  actions:
+    - action: "set-attribute"
+      path: "driver_info/redfish_address"
+      value: "{data[inventory][bmc_address]}"
+
+inspector_rule_redfish_system_id:
+  description: "Set Redfish System ID"
+  conditions:
+    - field: "node://driver_info.redfish_system_id"
+      op: "is-empty"
+  actions:
+    - action: "set-attribute"
+      path: "driver_info/redfish_system_id"
+      value: "/redfish/v1/Systems/System.Embedded.1"
+
+inspector_rule_redfish_redfish_verify_ca:
+  description: "Set Redfish System ID"
+  conditions:
+    - field: "node://driver_info.redfish_system_id"
+      op: "is-empty"
+  actions:
+    - action: "set-attribute"
+      path: "driver_info/redfish_verify_ca"
+      value: "{{ inspector_rule_var_redfish_verify_ca }}"
+
+# List of additional ironic inspector rules.
+inspector_rules_extra:
+  - "{{ inspector_rule_redfish_credentials }}"
+  - "{{ inspector_rule_redfish_address }}"
+  - "{{ inspector_rule_redfish_system_id }}"
+  - "{{ inspector_rule_redfish_redfish_verify_ca }}"
+  # - "{{ inspector_rule_lldp_switch_port_desc_to_name_eno33np0 }}"
+
 # Ironic inspector IPMI username to set.
-#kolla_bifrost_inspector_ipmi_username:
+kolla_bifrost_inspector_ipmi_username: "{{ secrets_ipmi_username }}"
 
 # Ironic inspector IPMI password to set.
-#kolla_bifrost_inspector_ipmi_password:
+kolla_bifrost_inspector_ipmi_password: "{{ secrets_ipmi_password }}"
 
 # Ironic inspector network interface name on which to check for an LLDP switch
 # port description to use as the node's name.
-#kolla_bifrost_inspector_lldp_switch_port_interface:
+kolla_bifrost_inspector_lldp_switch_port_interface: "eno12399np0"
 
 # Ironic inspector deployment kernel location.
 #kolla_bifrost_inspector_deploy_kernel:
