@@ -1,0 +1,21 @@
+[controllers]
+controller1 ipmi_address=10.129.24.11 bmc_type=idrac
+controller2 ipmi_address=10.129.24.12 bmc_type=idrac
+controller3 ipmi_address=10.129.24.13 bmc_type=idrac
+
+[compute]
+compute1 ipmi_address=10.129.24.21 bmc_type=idrac
+compute2 ipmi_address=10.129.24.22 bmc_type=idrac
+compute3 ipmi_address=10.129.24.23 bmc_type=idrac
+compute4 ipmi_address=10.129.24.24 bmc_type=idrac
+compute5 ipmi_address=10.129.24.25 bmc_type=idrac
+compute6 ipmi_address=10.129.24.26 bmc_type=idrac
+compute7 ipmi_address=10.129.24.27 bmc_type=idrac
+compute8 ipmi_address=10.129.24.28 bmc_type=idrac
+
+[compute_gpu]
+gpu1 ipmi_address=10.129.24.31 bmc_type=idrac
+gpu2 ipmi_address=10.129.24.32 bmc_type=idrac
+
+[storage]
+controller4 ipmi_address=10.129.24.14 bmc_type=idrac
