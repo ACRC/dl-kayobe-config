@@ -1,0 +1,16 @@
+- name: Disable NVMe multipath
+  hosts: controllers
+  vars:
+    kernel_cmdline:
+      - nvme-core.multipath=N
+    kernel_cmdline_remove:
+      - ^nvme-core.multipath
+    ansible_user: "ubuntu"
+    ansible_python_interpreter: "/usr/bin/python3"
+  tasks:
+    - include_role:
+        name: stackhpc.grubcmdline
+  handlers:
+    - name: reboot
+      reboot:
+      become: true
