@@ -158,7 +158,6 @@ inspector_rules_extra:
   - "{{ inspector_rule_redfish_address }}"
   - "{{ inspector_rule_redfish_system_id }}"
   - "{{ inspector_rule_redfish_redfish_verify_ca }}"
-  # - "{{ inspector_rule_lldp_switch_port_desc_to_name_eno33np0 }}"
 
 # Ironic inspector IPMI username to set.
 kolla_bifrost_inspector_ipmi_username: "{{ secrets_ipmi_username }}"
