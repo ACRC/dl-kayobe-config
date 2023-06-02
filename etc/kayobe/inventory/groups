@@ -44,12 +44,16 @@ controllers
 [compute]
 # Empty group to provide declaration of compute group.
 
+[compute_gpu]
+# Empty group to provide declaration of compute_gpu group.
+
 [overcloud:children]
 controllers
 network
 monitoring
 storage
 compute
+compute_gpu
 
 ###############################################################################
 # Service groups.

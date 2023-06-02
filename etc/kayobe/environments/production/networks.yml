@@ -67,10 +67,11 @@ external_admin_net_gateway: "10.129.25.246"
 
 # External/Intranet network IP information.
 # There aren't any control plane hosts bound to this network
-external_intranet_cidr: "10.129.32.0/24"
+#TODO(mattc): Request another /24 range, or set this to a 192. range. The .32 subnet here is not yet available to us.
+external_intranet_cidr: #"10.129.32.0/24"
 external_intranet_vlan: 2804
 external_intranet_mtu: 1500
-external_intranet_gateway: "10.129.32.1"
+external_intranet_gateway: #"10.129.32.1"
 
 # External/Internet network IP information.
 # OpenStack PublicAPI hosts sit at bottom of this subnet
