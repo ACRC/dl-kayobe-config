@@ -17,7 +17,7 @@ provision_ctl_net_allocation_pool_start: "10.129.28.10"
 provision_ctl_net_allocation_pool_end: "10.129.28.127"
 provision_ctl_net_inspection_allocation_pool_start: "10.129.28.128"
 provision_ctl_net_inspection_allocation_pool_end: "10.129.28.250"
-provision_ctl_net_vlan: 3
+provision_ctl_net_switch_vlan: 3
 provision_ctl_net_mtu: 1500
 
 # Internal API network IP information.
