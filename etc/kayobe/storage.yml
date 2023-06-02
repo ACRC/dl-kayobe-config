@@ -16,7 +16,10 @@
 #storage_default_network_interfaces:
 
 # List of extra networks to which storage nodes are attached.
-#storage_extra_network_interfaces:
+storage_extra_network_interfaces:
+  - hs_bond
+  - storage_mgmt_net
+  - external_internet
 
 # Whether this host requires access to Swift networks.
 #storage_needs_swift_network:
@@ -57,7 +60,13 @@
 # Storage node software RAID configuration.
 
 # List of software RAID arrays. See mrlesmithjr.mdadm role for format.
-#storage_mdadm_arrays:
+storage_mdadm_arrays:
+  - name: md0
+    devices:
+      - /dev/disk/by-path/pci-0000:c3:00.0-nvme-1
+      - /dev/disk/by-path/pci-0000:c4:00.0-nvme-1
+    level: '1'
+    state: present
 
 ###############################################################################
 # Storage node encryption configuration.
@@ -70,7 +79,9 @@
 
 # List of storage volume groups. See mrlesmithjr.manage-lvm role for
 # format.
-#storage_lvm_groups:
+storage_lvm_groups:
+  - "{{ stackhpc_lvm_group_rootvg }}"
+  - "{{ storage_lvm_group_data }}"
 
 # Default list of storage volume groups. See mrlesmithjr.manage-lvm role for
 # format.
@@ -93,8 +104,8 @@
 
 # List of disks for use by storage LVM data volume group. Default to an
 # invalid value to require configuration.
-#storage_lvm_group_data_disks:
-
+storage_lvm_group_data_disks:
+  - /dev/md0
 # List of LVM logical volumes for the data volume group.
 #storage_lvm_group_data_lvs:
 
