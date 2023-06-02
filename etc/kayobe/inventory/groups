@@ -41,11 +41,17 @@ controllers
 [storage]
 # Empty group to provide declaration of storage group.
 
+[storage:children]
+controllers
+
 [compute]
 # Empty group to provide declaration of compute group.
 
 [compute_gpu]
 # Empty group to provide declaration of compute_gpu group.
+
+[compute:children]
+compute_gpu
 
 [overcloud:children]
 controllers
