@@ -1,0 +1,5 @@
+---
+# Hign speed bond config
+hs_bond_interface: "bond0"
+hs_bond_bond_mode: "802.3ad"
+hs_bond_bond_xmit_hash_policy: "layer3+4"
