@@ -79,11 +79,15 @@ prometheus_node_exporter_cmdline_extras: "--collector.textfile.directory=/var/li
 
 
 #############################################################################
-# Enabling Ceph Backend
+# Ceph
 
+# Ceph backends
 cinder_backend_ceph: true
 glance_backend_ceph: true
 nova_backend_ceph: true
+
+# Manila CephFS configuration
+manila_cephfs_filesystem_name: manila-cephfs
 
 #############################################################################
 # Octavia

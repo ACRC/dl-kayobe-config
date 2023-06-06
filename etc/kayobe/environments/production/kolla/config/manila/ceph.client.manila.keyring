@@ -1,0 +1,4 @@
+[client.manila]
+	key = {{ secrets_manila_ceph_key }}
+	caps mgr = "allow rw"
+	caps mon = "allow r"
