@@ -49,7 +49,13 @@ cephadm_cluster_network: "{{ storage_mgmt_net_name | net_cidr }}"
 #cephadm_osd_devices:
 
 # Ceph OSD specification.
-#cephadm_osd_spec:
+cephadm_osd_spec:
+  service_type: osd
+  service_id: osd_spec_default
+  placement:
+    host_pattern: "*"
+  data_devices:
+    all: true
 
 # Additional arguments to pass to `cephadm bootstrap`.
 #cephadm_bootstrap_additional_parameters:
@@ -65,10 +71,38 @@ cephadm_cluster_network: "{{ storage_mgmt_net_name | net_cidr }}"
 #cephadm_crush_rules:
 
 # List of Ceph pools. See stackhpc.cephadm.pools role for format.
-#cephadm_pools:
+cephadm_pools:
+  - name: backups
+    application: rbd
+    state: present
+  - name: images
+    application: rbd
+    state: present
+  - name: volumes
+    application: rbd
+    state: present
+  - name: vms
+    application: rbd
+    state: present
 
 # List of Cephx keys. See stackhpc.cephadm.keys role for format.
-#cephadm_keys:
+cephadm_keys:
+  - name: client.cinder
+    caps:
+      mon: "profile rbd"
+      osd: "profile rbd pool=volumes, profile rbd pool=vms, profile rbd-read-only pool=images"
+      mgr: "profile rbd pool=volumes, profile rbd pool=vms"
+  - name: client.cinder-backup
+    caps:
+      mon: "profile rbd"
+      osd: "profile rbd pool=volumes, profile rbd pool=backups"
+      mgr: "profile rbd pool=volumes, profile rbd pool=backups"
+  - name: client.glance
+    caps:
+      mon: "profile rbd"
+      osd: "profile rbd pool=images"
+      mgr: "profile rbd pool=images"
+    state: present
 
 # A list of commands to pass to cephadm shell -- ceph. See
 # stackhpc.cephadm.commands for format. Pre commands run before the rest of the
