@@ -1,0 +1,5 @@
+[client.cinder-backup]
+	key = {{ secrets_cinder_backup_ceph_key }}
+	caps mgr = "profile rbd pool=volumes, profile rbd pool=backups"
+	caps mon = "profile rbd"
+	caps osd = "profile rbd pool=volumes, profile rbd pool=backups"
