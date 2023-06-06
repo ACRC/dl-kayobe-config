@@ -85,3 +85,9 @@ cinder_backend_ceph: true
 glance_backend_ceph: true
 nova_backend_ceph: true
 
+#############################################################################
+# Octavia
+
+octavia_provider_drivers: "ovn:OVN provider"
+octavia_provider_agents: "ovn"
+
