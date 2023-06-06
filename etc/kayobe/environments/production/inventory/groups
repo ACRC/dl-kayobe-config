@@ -1,15 +1,11 @@
-[cephmon]
-[cephosd]
-[storage]
-
 [mons:children]
-cephmon
+controllers
 
 [mgrs:children]
-storage
+controllers
 
 [osds:children]
-cephosd
+storage
 
 [rgws:children]
-cephosd
+storage
