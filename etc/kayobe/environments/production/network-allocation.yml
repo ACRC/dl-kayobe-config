@@ -6,7 +6,7 @@ external_ceph_net_ips:
   controller2: 172.16.0.2
   controller3: 172.16.0.3
   controller4: 172.16.0.4
-external_internet_net_ips:
+external_internet_ips:
   controller1: 10.129.30.10
   controller2: 10.129.30.11
   controller3: 10.129.30.12
@@ -16,7 +16,7 @@ external_api_net_ips:
   controller2: 10.129.26.131
   controller3: 10.129.26.132
   controller4: 10.129.26.133
-external_intranet_net_ips:
+external_intranet_ips:
   dl-ansible-01: null
 internal_net_ips:
   compute1: 10.129.26.21
@@ -72,7 +72,7 @@ provision_ctl_net_ips:
   gpu1: 10.129.28.31
   gpu2: 10.129.28.32
 storage_mgmt_net_ips:
-  controller1: 10.129.26.74
+  controller1: 10.129.26.75
   controller2: 10.129.26.76
   controller3: 10.129.26.77
   controller4: 10.129.26.78
