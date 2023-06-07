@@ -73,6 +73,11 @@ switch_interface_config_vlans_template: |-
     config:
       - no shutdown
       - mtu {{ external_intranet_mtu }}
+  vlan {{ external_api_net_vlan }}:
+    description: Public-API
+    config:
+      - no shutdown
+      - mtu {{ external_api_net_mtu }}
 
 switch_interface_config_vlans: "{{ switch_interface_config_vlans_template | from_yaml }}"
 
@@ -162,6 +167,7 @@ switch_controller_trunk_ctl_vlans:
 #  - "{{ provision_ctl_net_switch_vlan }}"
   - "{{ external_internet_vlan }}"
   - "{{ external_intranet_vlan }}"
+  - "{{ external_api_net_vlan }}"
 
 # VLANs to trunk to compute nodes on the high-speed interface
 switch_compute_trunk_hs_vlans:
@@ -175,6 +181,7 @@ switch_compute_trunk_ctl_vlans:
 #  - "{{ provision_ctl_net_switch_vlan }}"
   - "{{ external_internet_vlan }}"
   - "{{ external_intranet_vlan }}"
+  - "{{ external_api_net_vlan }}"
 
 ###############################################################################
 # Switch global config
