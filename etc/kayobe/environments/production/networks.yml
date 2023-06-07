@@ -21,31 +21,31 @@ provision_ctl_net_switch_vlan: 3
 provision_ctl_net_mtu: 1500
 
 # Internal API network IP information.
-internal_net_vip_address: "10.129.30.2"
-internal_net_cidr: "10.129.30.0/24"
-internal_net_allocation_pool_start: "10.129.30.10"
-internal_net_allocation_pool_end: "10.129.30.250"
+internal_net_vip_address: "10.129.26.2"
+internal_net_cidr: "10.129.26.0/26"
+internal_net_allocation_pool_start: "10.129.26.10"
+internal_net_allocation_pool_end: "10.129.26.58"
 internal_net_vlan: 4
 internal_net_mtu: 9000
 
 # Storage network IP information.
-storage_net_cidr: "10.129.27.0/24"
+storage_net_cidr: "10.129.27.0/25"
 storage_net_allocation_pool_start: "10.129.27.10"
-storage_net_allocation_pool_end: "10.129.27.250"
+storage_net_allocation_pool_end: "10.129.27.120"
 storage_net_vlan: 5
 storage_net_mtu: 9000
 
 # Storage Management network IP information.
-storage_mgmt_net_cidr: "10.129.26.0/24"
-storage_mgmt_net_allocation_pool_start: "10.129.26.10"
-storage_mgmt_net_allocation_pool_end: "10.129.26.250"
+storage_mgmt_net_cidr: "10.129.26.64/26"
+storage_mgmt_net_allocation_pool_start: "10.129.26.74"
+storage_mgmt_net_allocation_pool_end: "10.129.26.124"
 storage_mgmt_net_vlan: 6
 storage_mgmt_net_mtu: 9000
 
 # Tenant/Tunnel network IP information.
-tenant_tunnel_net_cidr: "10.129.29.0/24"
-tenant_tunnel_net_allocation_pool_start: "10.129.29.10"
-tenant_tunnel_net_allocation_pool_end: "10.129.29.250"
+tenant_tunnel_net_cidr: "10.129.27.128/25"
+tenant_tunnel_net_allocation_pool_start: "10.129.27.130"
+tenant_tunnel_net_allocation_pool_end: "10.129.29.248"
 tenant_tunnel_net_vlan: 7
 tenant_tunnel_net_mtu: 9150
 
@@ -67,28 +67,33 @@ external_admin_net_gateway: "10.129.25.246"
 
 # External/Intranet network IP information.
 # There aren't any control plane hosts bound to this network
-#TODO(mattc): Request another /24 range, or set this to a 192. range. The .32 subnet here is not yet available to us.
-external_intranet_cidr: #"10.129.32.0/24"
+external_intranet_cidr: "10.129.29.0/24"
 external_intranet_vlan: 2804
 external_intranet_mtu: 1500
-external_intranet_gateway: #"10.129.32.1"
+#external_intranet_gateway: "10.129.29.246"
 
 # External/Internet network IP information.
-# OpenStack PublicAPI hosts sit at bottom of this subnet
-# FIXME: placeholder content
-external_internet_fqdn: "placeholder.bristol.ac.uk"
-external_internet_cidr: "10.129.31.0/24"
-external_internet_allocation_pool_start: "10.129.31.10"
+# Default gateway for tenant traffic sits at bottom of this subnet
+external_internet_cidr: "10.129.30.0/23"
+external_internet_allocation_pool_start: "10.129.30.10"
 external_internet_allocation_pool_end: "10.129.31.240"
 external_internet_vlan: 2803
 external_internet_mtu: 1500
 external_internet_gateway: "10.129.31.254"
+
+# External/API network IP information.
+# OpenStack PublicAPI hosts sit at bottom of this subnet
 # VIP address for public API endpoints.
-external_internet_vip_address: "10.129.31.1"
+external_api_net_vip_address: "10.129.26.129"
+external_api_net_cidr: "10.129.26.128/26"
+external_api_net_allocation_pool_start: "10.129.26.130"
+external_api_net_allocation_pool_end: "10.129.26.188"
+external_api_net_vlan: 2805
+external_api_net_mtu: 1500
+#external_api_net_gateway: "10.129.26.190"
 # FQDN address for public API endpoints, registered with the external DNS
 # server to resolve to the public VIP address.
-
-# Workload proviver network?
+external_api_net_fqdn: "placeholder.acrc.bris.ac.uk"
 
 ###############################################################################
 # Dummy variable to allow Ansible to accept this file.

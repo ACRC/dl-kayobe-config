@@ -7,32 +7,32 @@ external_ceph_net_ips:
   controller3: 172.16.0.3
   controller4: 172.16.0.4
 external_internet_ips:
-  controller1: 10.129.31.10
-  controller2: 10.129.31.11
-  controller3: 10.129.31.12
-  controller4: 10.129.31.13
-external_internet_net_ips:
-  controller1: null
-  controller2: null
-  controller3: null
-  controller4: null
-external_intranet_net_ips:
+  controller1: 10.129.30.10
+  controller2: 10.129.30.11
+  controller3: 10.129.30.12
+  controller4: 10.129.30.13
+external_api_net_ips:
+  controller1: 10.129.26.130
+  controller2: 10.129.26.131
+  controller3: 10.129.26.132
+  controller4: 10.129.26.133
+external_intranet_ips:
   dl-ansible-01: null
 internal_net_ips:
-  compute1: 10.129.30.21
-  compute2: 10.129.30.22
-  compute3: 10.129.30.23
-  compute4: 10.129.30.24
-  compute5: 10.129.30.25
-  compute6: 10.129.30.26
-  compute7: 10.129.30.27
-  compute8: 10.129.30.28
-  controller1: 10.129.30.12
-  controller2: 10.129.30.13
-  controller3: 10.129.30.14
-  controller4: 10.129.30.15
-  gpu1: 10.129.30.31
-  gpu2: 10.129.30.32
+  compute1: 10.129.26.21
+  compute2: 10.129.26.22
+  compute3: 10.129.26.23
+  compute4: 10.129.26.24
+  compute5: 10.129.26.25
+  compute6: 10.129.26.26
+  compute7: 10.129.26.27
+  compute8: 10.129.26.28
+  controller1: 10.129.26.12
+  controller2: 10.129.26.13
+  controller3: 10.129.26.14
+  controller4: 10.129.26.15
+  gpu1: 10.129.26.31
+  gpu2: 10.129.26.32
 power_mgmt_net_ips:
   ansible-bmc: 10.129.24.10
   compute1: 10.129.24.21
@@ -72,10 +72,10 @@ provision_ctl_net_ips:
   gpu1: 10.129.28.31
   gpu2: 10.129.28.32
 storage_mgmt_net_ips:
-  controller1: 10.129.26.11
-  controller2: 10.129.26.12
-  controller3: 10.129.26.13
-  controller4: 10.129.26.14
+  controller1: 10.129.26.75
+  controller2: 10.129.26.76
+  controller3: 10.129.26.77
+  controller4: 10.129.26.78
 storage_net_ips:
   compute1: 10.129.27.21
   compute2: 10.129.27.22
@@ -92,17 +92,17 @@ storage_net_ips:
   gpu1: 10.129.27.31
   gpu2: 10.129.27.32
 tenant_tunnel_net_ips:
-  compute1: 10.129.29.21
-  compute2: 10.129.29.22
-  compute3: 10.129.29.23
-  compute4: 10.129.29.24
-  compute5: 10.129.29.25
-  compute6: 10.129.29.26
-  compute7: 10.129.29.27
-  compute8: 10.129.29.28
-  controller1: 10.129.29.12
-  controller2: 10.129.29.13
-  controller3: 10.129.29.14
-  controller4: 10.129.29.15
-  gpu1: 10.129.29.31
-  gpu2: 10.129.29.32
+  compute1: 10.129.27.141
+  compute2: 10.129.27.142
+  compute3: 10.129.27.143
+  compute4: 10.129.27.144
+  compute5: 10.129.27.145
+  compute6: 10.129.27.146
+  compute7: 10.129.27.147
+  compute8: 10.129.27.148
+  controller1: 10.129.27.131
+  controller2: 10.129.27.132
+  controller3: 10.129.27.133
+  controller4: 10.129.27.134
+  gpu1: 10.129.27.151
+  gpu2: 10.129.27.152
