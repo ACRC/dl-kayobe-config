@@ -95,13 +95,14 @@ switch_interface_config_lag_member_template: |-
   - flowcontrol transmit on
   - lldp tlv-select basic-tlv management-address port-description system-name
   - lldp tlv-select dcbxp
-  - channel-group %(channel)s mode active
+  - channel-group %(channel)d mode active
 
 # OpenStack compute hypervisor data interface configuration
 switch_interface_config_lag_member: "{{ switch_interface_config_lag_member_template | from_yaml }}"
 
 # Bonded Ethernet interface configuration
 switch_interface_config_lag_template: |
+  - vlt-port-channel %(channel)d
   - no shutdown
   - mtu {{ switch_fabric_mtu }}
   - switchport mode trunk
