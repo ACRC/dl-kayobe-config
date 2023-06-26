@@ -20,6 +20,8 @@ seed_hypervisor_extra_network_interfaces:
   - "mgmt_bond_ext"
   - "mgmt_bond_int"
   - "external_admin_net"
+  - "external_api_net"
+  # - "internal_net"
 
 # Whether to enable SNAT on seed hypervisor node. Default is false.
 #seed_hypervisor_enable_snat:
@@ -49,7 +51,7 @@ seed_hypervisor_lvm_groups:
     create: true
     lvnames:
       - lvname: "ubuntu-lv"
-        size: 100.0g
+        size: 200.0g
         create: true
         filesystem: ext4
         mount: true

@@ -1,0 +1,61 @@
+---
+- hosts: overcloud
+  gather_facts: false
+  connection: local
+  collections:
+   - dellemc.openmanage
+
+  vars:
+    # run with -e dell_drm_apply_update=true to apply the firmware
+    dell_drm_apply_update: True
+    dell_drm_address: "https://{{ oob_oc_net_name | net_ip(inventory_hostname=groups['seed'][0]) }}"
+    secrets_ipmi_username: "{{ ipmi_admin_user }}"
+    secrets_ipmi_password: "{{ ipmi_admin_password }}"
+    # Look at the readme for more details, but you need a repo
+    # created in drm, and exported via a webserver:
+    # drm --create -r=idrac_repo_joint --inputplatformlist=R640,R6525
+    dell_drm_repo: "idrac_repo_joint_1.01_Catalog.xml"
+
+  tasks:
+    - name: Set maintenance mode
+      command: |-
+        docker exec bifrost_deploy bash -c '
+          OS_CLOUD=bifrost openstack baremetal node maintenance set \
+            --reason "Running drac-firmware-update.yml" \
+            {{ inventory_hostname }}'
+      become: true
+      delegate_to: "{{ groups.seed.0 }}"
+      vars:
+        ansible_connection: ssh
+        ansible_host: "{{ hostvars[groups.seed.0].ansible_host }}"
+
+    - name: Update firmware from repository on a HTTP
+      vars:
+        ansible_python_interpreter: "{{ ansible_playbook_python }}"
+      idrac_firmware:
+        idrac_ip: "{{ ipmi_address }}"
+        idrac_user: "{{ ipmi_username }}"
+        idrac_password: "{{ ipmi_password }}"
+        validate_certs: false
+        reboot: True
+        job_wait: True
+        apply_update: "{{ dell_drm_apply_update | bool }}"
+        share_name: "{{ dell_drm_address }}"
+        catalog_file_name: "{{ dell_drm_repo }}"
+        ignore_cert_warning: True
+      register: idrac_firmware_output
+      delegate_to: localhost
+      when: ipmi_address is defined
+    - debug:
+        msg: "{{ idrac_firmware_output }}"
+
+    - name: Unset maintenance mode
+      command: |-
+        docker exec bifrost_deploy bash -c '
+          OS_CLOUD=bifrost openstack baremetal node maintenance unset \
+            {{ inventory_hostname }}'
+      become: true
+      delegate_to: "{{ groups.seed.0 }}"
+      vars:
+        ansible_connection: ssh
+        ansible_host: "{{ hostvars[groups.seed.0].ansible_host }}"
