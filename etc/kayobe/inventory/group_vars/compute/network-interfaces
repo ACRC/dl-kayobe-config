@@ -29,6 +29,10 @@ hs_bond_bond_slaves:
   - enp65s0f0np0
   - enp65s0f1np1
 
+sriov_physnet_mappings:
+  enp65s0f0np0: physnet1
+  enp65s0f1np1: physnet1
+
 
 ###############################################################################
 # Dummy variable to allow Ansible to accept this file.

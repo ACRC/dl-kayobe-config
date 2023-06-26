@@ -68,6 +68,9 @@ storage
 compute
 compute_gpu
 
+[vflag:children]
+compute
+
 ###############################################################################
 # Service groups.
 

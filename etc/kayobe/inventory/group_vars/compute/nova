@@ -1,0 +1,5 @@
+---
+# These CPU allocations should pair thread siblings together for 
+# each purpose.
+nova_cpu_shared_set: "1,17,33,49,65,81,96-97,112-113,129,145,161,177,193,209,224-225,240-241"
+nova_cpu_dedicated_set: "2-15,18-31,34-47,50-63,66-79,82-95,98-111,114-127,130-143,146-159,162-175,178-191,194-207,210-223,226-239,242-255"

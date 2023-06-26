@@ -102,3 +102,8 @@ manila_cephfs_filesystem_name: manila-cephfs
 octavia_provider_drivers: "ovn:OVN provider"
 octavia_provider_agents: "ovn"
 
+#############################################################################
+# Performance
+
+openvswitch_hw_offload: yes
+

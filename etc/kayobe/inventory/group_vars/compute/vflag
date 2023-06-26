@@ -1,0 +1,13 @@
+---
+
+vflag_pfs: "{{ hs_bond_bond_slaves }}"
+vflag_numvfs: 31
+
+# Configuration for stackhpc.sriov
+sriov_devices:
+  - name: "{{ hs_bond_bond_slaves.0 }}"
+    numvfs: "{{ vflag_numvfs }}"
+    on_boot_configuration_enabled: false
+  - name: "{{ hs_bond_bond_slaves.1 }}"
+    numvfs: "{{ vflag_numvfs }}"
+    on_boot_configuration_enabled: false

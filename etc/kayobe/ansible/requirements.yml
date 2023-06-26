@@ -6,7 +6,13 @@ collections:
     version: 0.4.1
   - name: dellemc.openmanage
     version: 7.5.0
+  - name: stackhpc.linux
+    source: git+https://github.com/stackhpc/ansible-collection-linux.git,preemptive/vgpu-iommu
+    type: git
 roles:
+  - src: stackhpc.sriov
+    version: 0.2.0
+  - src: stackhpc.grubcmdline
   - src: stackhpc.vxlan
   - name: ansible-lockdown.rhel8_cis
     src: https://github.com/ansible-lockdown/RHEL8-CIS

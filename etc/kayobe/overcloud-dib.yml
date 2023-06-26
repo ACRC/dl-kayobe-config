@@ -36,11 +36,19 @@ overcloud_dib_host_packages_extra:
 # when overcloud_dib_os_element is "rocky" or
 # ["ubuntu", "cloud-init-datasources", "enable-serial-console", "vm"]
 # when overcloud_dib_os_element is "ubuntu".
-overcloud_dib_elements_default: "{{ stackhpc_overcloud_dib_elements }}"
+overcloud_dib_elements_default:
+  - "ubuntu-jammy-ofed"  # Replaces ubuntu-minimal
+  - "cloud-init-datasources"
+  - "enable-serial-console"
+  - "vm"
+  - "block-device-efi"
+  - "cloud-init"
+  - "lvm-for-containerfile" # Replaces lvm, as that depends on ubuntu-minimal
+  - "openssh-server"
+  - "sudoers"
 
 # List of additional DIB elements. Default is none.
-overcloud_dib_elements_extra:
-  - "mlnx-ofed"
+# overcloud_dib_elements_extra:
 
 # List of DIB elements. Default is a combination of
 # overcloud_dib_elements_default and overcloud_dib_elements_extra.
@@ -54,10 +62,8 @@ overcloud_dib_elements_extra:
 overcloud_dib_env_vars_default: "{{ stackhpc_overcloud_dib_env_vars }}"
 
 # DIB additional environment variables. Default is none.
-overcloud_dib_env_vars_extra:
-#  - DIB_MLNX_OFED_REPO: "https://www.mellanox.com/downloads/ofed/MLNX_OFED-5.8-2.0.3.0/MLNX_OFED_SRC-debian-5.8-2.0.3.0.tgz"
-  - DIB_MLNX_OFED_REPO: "https://linux.mellanox.com/public/repo/mlnx_ofed/23.04-0.5.3.3/ubuntu22.04/x86_64/"
-  - DIB_MLNX_OFED_VERSION: "5.8-2.0.3.0"
+# overcloud_dib_env_vars_extra:
+  # DIB_CONTAINERFILE_DOCKERFILE: "{{ source_checkout_path }}/stackhpc-image-elements/elements/ubuntu-jammy-ofed/ubuntu-jammy-ofed-23.04"
 
 # DIB environment variables. Default is combination of
 # overcloud_dib_env_vars_default and overcloud_dib_env_vars_extra.

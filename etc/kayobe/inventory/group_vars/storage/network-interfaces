@@ -36,6 +36,8 @@ hs_bond_bond_slaves:
   - enp37s0f0np0
   - enp37s0f1np1
 
+sriov_physnet_mappings: {}
+
 ###############################################################################
 # Dummy variable to allow Ansible to accept this file.
 workaround_ansible_issue_8743: yes
