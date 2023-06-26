@@ -7,6 +7,7 @@ kolla_enable_neutron_provider_networks: true
 kolla_enable_neutron_sriov: true
 kolla_enable_octavia: true
 kolla_enable_ovn: true
+kolla_enable_prometheus_blackbox_exporter: true
 
 # TBD
 # kolla_enable_barbican: true
