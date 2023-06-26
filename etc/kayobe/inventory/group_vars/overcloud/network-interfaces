@@ -1,5 +1,10 @@
 ---
-# Hign speed bond config
+# High speed bond config
 hs_bond_interface: "bond0"
 hs_bond_bond_mode: "802.3ad"
 hs_bond_bond_xmit_hash_policy: "layer3+4"
+
+# Control bond config
+provision_ctl_net_interface: "bond1"
+provision_ctl_net_bond_mode: "802.3ad"
+provision_ctl_net_bond_xmit_hash_policy: "layer3+4"

@@ -18,7 +18,7 @@
 #seed_vm_pool:
 
 # Capacity of the seed VM root volume.
-#seed_vm_root_capacity:
+seed_vm_root_capacity: 80G
 
 # Format of the seed VM root volume.
 #seed_vm_root_format:

@@ -1,11 +1,24 @@
 ---
 kolla_enable_cinder: true
 kolla_enable_cinder_backup: true
+kolla_enable_manila: true
+kolla_enable_manila_backend_cephfs_native: true
+kolla_enable_neutron_provider_networks: true
+kolla_enable_neutron_sriov: true
+kolla_enable_octavia: true
 kolla_enable_ovn: true
+kolla_enable_prometheus_ceph_mgr_exporter: true
+kolla_enable_prometheus_blackbox_exporter: true
 
 # TBD
 # kolla_enable_barbican: true
 # kolla_enable_cloudkitty: true
 # kolla_enable_designate: true
-# kolla_enable_manila: true
-# kolla_enable_octavia: true
+
+# List of names of additional host variables to pass through from kayobe hosts
+# to kolla-ansible hosts, if set. See also
+# kolla_overcloud_inventory_pass_through_host_vars_map.
+kolla_overcloud_inventory_pass_through_host_vars_extra:
+  - "nova_cpu_shared_set"
+  - "nova_cpu_dedicated_set"
+  - "sriov_physnet_mappings"

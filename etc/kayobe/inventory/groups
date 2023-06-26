@@ -42,8 +42,8 @@ overcloud
 # although they could be separate hosts.
 controllers
 
-[monitoring]
-# Empty group to provide declaration of monitoring group.
+[monitoring:children]
+controllers
 
 [storage]
 # Empty group to provide declaration of storage group.
@@ -67,6 +67,9 @@ monitoring
 storage
 compute
 compute_gpu
+
+[vflag:children]
+compute
 
 ###############################################################################
 # Service groups.

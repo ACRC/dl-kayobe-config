@@ -1,0 +1,8 @@
+---
+# CPU cores to reserve for VM instances
+#nova_cpu_dedicated_set: 1-63,65-127
+
+perf_tuning_default_hugepagesz: "1G"
+perf_tuning_hugepagesz: "1G"
+perf_tuning_hugepages: 960
+perf_tuning_transparent_hugepage: "never"

@@ -1,0 +1,68 @@
+---
+- import_playbook: vf-lag-host-configure.yml
+
+- name: Configure compute hypervisors with boot parameters for performance optimisations
+  hosts:
+    - compute
+  tags: hugepages
+  roles:
+    - name: stackhpc.grubcmdline
+      kernel_cmdline:
+        # These two disable CPU power saving.
+        #- processor.max_cstate=1
+        #- intel_idle.max_cstate=0
+        # Enable huge pages.
+        - default_hugepagesz={{ perf_tuning_default_hugepagesz }}
+        - hugepagesz={{ perf_tuning_hugepagesz }}
+        - hugepages={{ perf_tuning_hugepages }}
+        - transparent_hugepage={{ perf_tuning_transparent_hugepage }}
+      kernel_cmdline_remove:
+        #- ^processor.max_cstate=
+        #- ^intel_idle.max_cstate=
+        - ^default_hugepagesz
+        - ^hugepages
+        - ^transparent_hugepage
+
+  handlers:
+     - name: reboot
+       set_fact:
+         kayobe_needs_reboot: true
+
+- hosts: iommu
+  tags:
+    - iommu
+  tasks:
+    - import_role:
+        name: stackhpc.linux.iommu
+  handlers:
+     - name: reboot
+       set_fact:
+         kayobe_needs_reboot: true
+
+# - hosts: vgpu
+#   tags:
+#     - vgpu
+#   tasks:
+#     - import_role:
+#         name: stackhpc.linux.vgpu
+#   handlers:
+#     - name: reboot
+#       set_fact:
+#         kayobe_needs_reboot: true
+
+- name: Reboot when required
+  hosts: overcloud
+  vars:
+    # This playbook will execute after nodes are deployed
+    # and before overcloud host configure - we can't assume
+    # users and venvs exist.
+    ansible_user: "ubuntu"
+    ansible_python_interpreter: "/usr/bin/python3"
+  tags:
+    - reboot
+  tasks:
+    - name: Reboot
+      reboot:
+        reboot_timeout: 3600
+      become: true
+      when: kayobe_needs_reboot | default(false) | bool

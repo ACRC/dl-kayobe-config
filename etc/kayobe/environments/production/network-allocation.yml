@@ -1,23 +1,29 @@
 external_admin_net_ips:
   dl-ansible-01: 10.129.25.10
   dl-seed: 10.129.25.11
+external_api_net_ips:
+  compute1: 10.129.26.135
+  compute2: 10.129.26.136
+  compute3: 10.129.26.137
+  compute4: 10.129.26.138
+  compute5: 10.129.26.139
+  compute6: 10.129.26.140
+  compute7: 10.129.26.141
+  compute8: 10.129.26.142
+  controller1: 10.129.26.130
+  controller2: 10.129.26.131
+  controller3: 10.129.26.132
+  controller4: 10.129.26.133
+  dl-ansible-01: 10.129.26.134
+  gpu1: 10.129.26.143
+  gpu2: 10.129.26.144
 external_ceph_net_ips:
   controller1: 172.16.0.1
   controller2: 172.16.0.2
   controller3: 172.16.0.3
   controller4: 172.16.0.4
-external_internet_ips:
-  controller1: 10.129.30.10
-  controller2: 10.129.30.11
-  controller3: 10.129.30.12
-  controller4: 10.129.30.13
-external_api_net_ips:
-  controller1: 10.129.26.130
-  controller2: 10.129.26.131
-  controller3: 10.129.26.132
-  controller4: 10.129.26.133
-external_intranet_ips:
-  dl-ansible-01: null
+external_internet_ips: null
+external_intranet_ips: null
 internal_net_ips:
   compute1: 10.129.26.21
   compute2: 10.129.26.22
@@ -31,6 +37,7 @@ internal_net_ips:
   controller2: 10.129.26.13
   controller3: 10.129.26.14
   controller4: 10.129.26.15
+  dl-ansible-01: 10.129.26.10
   gpu1: 10.129.26.31
   gpu2: 10.129.26.32
 power_mgmt_net_ips:

@@ -75,8 +75,6 @@ external_intranet_mtu: 1500
 # External/Internet network IP information.
 # Default gateway for tenant traffic sits at bottom of this subnet
 external_internet_cidr: "10.129.30.0/23"
-external_internet_allocation_pool_start: "10.129.30.10"
-external_internet_allocation_pool_end: "10.129.31.240"
 external_internet_vlan: 2803
 external_internet_mtu: 1500
 external_internet_gateway: "10.129.31.254"
