@@ -2,6 +2,7 @@
 kolla_enable_cinder: true
 kolla_enable_cinder_backup: true
 kolla_enable_manila: true
+kolla_enable_manila_backend_cephfs_native: true
 kolla_enable_neutron_provider_networks: true
 kolla_enable_neutron_sriov: true
 kolla_enable_octavia: true
