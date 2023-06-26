@@ -95,6 +95,9 @@ prometheus_blackbox_exporter_endpoints:
   - "{% raw %}nova:os_endpoint:{{ public_protocol }}://{{ kolla_external_fqdn | put_address_in_context('url') }}:{{ nova_api_port}}{% endraw %}"
   - "{% raw %}placement:os_endpoint:{{ public_protocol }}://{{ kolla_external_fqdn | put_address_in_context('url') }}:{{ placement_api_port}}{% endraw %}"
 
+# Enable labelling with hostname in prometheus
+prometheus_instance_label: "{% raw %}{{ ansible_facts.hostname }}{% endraw %}"
+
 #############################################################################
 # Ceph
 
