@@ -1,0 +1,15 @@
+- hosts: localhost:seed
+  tasks:
+    - name: Generate /etc/hosts
+      blockinfile:
+        path: /etc/hosts
+        marker_begin: BEGIN Kayobe hosts
+        block: |
+          {% for host in groups['overcloud'] + groups['seed'] + groups['infra-vms'] %}
+          {% if admin_oc_net_name | net_ip(host) %}{{ admin_oc_net_name | net_ip(host) }} {{ host }}
+          {% endif %}
+          {% endfor %}
+          {% for host in groups['hs-switches'] %}
+          {{ hostvars[host].ansible_host }} {{ host }}
+          {% endfor %}
+      become: true
