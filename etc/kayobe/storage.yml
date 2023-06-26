@@ -20,7 +20,6 @@ storage_extra_network_interfaces:
   - provision_ctl_net
   - hs_bond
   - storage_mgmt_net
-  - external_internet
 
 # Whether this host requires access to Swift networks.
 #storage_needs_swift_network:
