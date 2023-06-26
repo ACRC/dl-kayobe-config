@@ -3,9 +3,14 @@
 # Network interface definitions for the compute group.
 
 # Overcloud provisioning network IP information.
-provision_ctl_net_interface: "eno12399np0"
+# provision_ctl_net_interface: "eno12399np0"
 # provision_oc_net_bridge_ports:
 # provision_oc_net_bond_slaves:
+
+# Control
+provision_ctl_net_bond_slaves:
+  - eno12399np0
+  - eno12409np1
 
 # Internal network IP information.
 internal_net_interface: "{{ hs_bond_interface }}.{{ internal_net_vlan }}"

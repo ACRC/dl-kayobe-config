@@ -17,6 +17,7 @@
 
 # List of extra networks to which storage nodes are attached.
 storage_extra_network_interfaces:
+  - provision_ctl_net
   - hs_bond
   - storage_mgmt_net
   - external_internet

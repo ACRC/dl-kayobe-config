@@ -3,19 +3,19 @@
 # Network interface definitions for the storage group.
 
 # Overcloud provisioning network IP information.
-provision_ctl_net_interface: "eno33np0"
+# provision_ctl_net_interface: "eno33np0"
 # provision_oc_net_bridge_ports:
 # provision_oc_net_bond_slaves:
+
+# Control
+provision_ctl_net_bond_slaves:
+  - eno33np0
+  - eno34np1
 
 # Internal network IP information.
 internal_net_interface: "{{ hs_bond_interface }}.{{ internal_net_vlan }}"
 # internal_net_bridge_ports:
 # internal_net_bond_slaves:
-
-# External network IP information.
-external_internet_interface: "{{ hs_bond_interface }}.{{ external_internet_vlan }}"
-# external_net_bridge_ports:
-# external_net_bond_slaves:
 
 # Storage network IP information.
 storage_net_interface: "{{ hs_bond_interface }}.{{ storage_net_vlan }}"
