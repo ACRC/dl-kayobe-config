@@ -85,6 +85,16 @@ prometheus_ceph_mgr_exporter_endpoints:
 {% endfor %}
 {% endif %}
 
+# Blackbox exporter endpoints
+prometheus_blackbox_exporter_endpoints:
+  - "{% raw %}cinder:os_endpoint:{{ public_protocol }}://{{ kolla_external_fqdn | put_address_in_context('url') }}:{{ cinder_api_port}}{% endraw %}"
+  - "{% raw %}glance:os_endpoint:{{ public_protocol }}://{{ kolla_external_fqdn | put_address_in_context('url') }}:{{ glance_api_port}}{% endraw %}"
+  - "{% raw %}heat:os_endpoint:{{ public_protocol }}://{{ kolla_external_fqdn | put_address_in_context('url') }}:{{ heat_api_port}}{% endraw %}"
+  - "{% raw %}octavia:os_endpoint:{{ public_protocol }}://{{ kolla_external_fqdn | put_address_in_context('url') }}:{{ octavia_api_port}}{% endraw %}"
+  - "{% raw %}neutron:os_endpoint:{{ public_protocol }}://{{ kolla_external_fqdn | put_address_in_context('url') }}:{{ neutron_server_port}}{% endraw %}"
+  - "{% raw %}nova:os_endpoint:{{ public_protocol }}://{{ kolla_external_fqdn | put_address_in_context('url') }}:{{ nova_api_port}}{% endraw %}"
+  - "{% raw %}placement:os_endpoint:{{ public_protocol }}://{{ kolla_external_fqdn | put_address_in_context('url') }}:{{ placement_api_port}}{% endraw %}"
+
 #############################################################################
 # Ceph
 
