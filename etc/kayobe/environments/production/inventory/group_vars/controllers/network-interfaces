@@ -2,8 +2,16 @@
 ###############################################################################
 # Network interface definitions for the controllers group.
 
+# External 10G network bond
+external_10g_interface: "bond2"
+external_10g_bond_mode: "802.3ad"
+external_10g_bond_xmit_hash_policy: "layer3+4"
+external_10g_bond_slaves:
+  - eno35np2
+  - eno36np3
+
 # External API network IP information.
-external_api_net_interface: "{{ provision_ctl_net_interface }}.{{ external_api_net_vlan }}"
+external_api_net_interface: "{{ external_10g_interface }}.{{ external_api_net_vlan }}"
 
 ###############################################################################
 # Dummy variable to allow Ansible to accept this file.
