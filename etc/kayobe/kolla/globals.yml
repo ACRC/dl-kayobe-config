@@ -75,7 +75,7 @@ prometheus_cmdline_extras: "--storage.tsdb.retention.time=30d"
 # Additional command line flags for node exporter to enable texfile collector for disk metrics and create textfile docker volume
 prometheus_node_exporter_extra_volumes:
   - "textfile:/var/lib/node_exporter/textfile_collector"
-prometheus_node_exporter_cmdline_extras: "--collector.textfile.directory=/var/lib/node_exporter/textfile_collector"
+prometheus_node_exporter_cmdline_extras: "--collector.textfile.directory=/var/lib/node_exporter/textfile_collector --no-collector.netclass"
 
 # Set Ceph manager exporter endpoints
 {% if groups['mgrs'] | length > 0 %}
