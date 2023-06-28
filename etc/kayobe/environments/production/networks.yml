@@ -51,9 +51,9 @@ tenant_tunnel_net_mtu: 9150
 
 # External/Ceph network IP information.
 # Ceph servers will be present in the first /24 range on this network
-external_ceph_net_cidr: "172.16.0.0/20"
-external_ceph_net_allocation_pool_start: "172.16.0.1"
-external_ceph_net_allocation_pool_end: "172.16.15.255"
+external_ceph_net_cidr: "10.0.0.0/20"
+external_ceph_net_allocation_pool_start: "10.0.0.2"
+external_ceph_net_allocation_pool_end: "10.0.15.254"
 external_ceph_net_vlan: 8
 external_ceph_net_mtu: 9000
 
@@ -89,9 +89,10 @@ external_api_net_allocation_pool_end: "10.129.26.188"
 external_api_net_vlan: 2805
 external_api_net_mtu: 1500
 #external_api_net_gateway: "10.129.26.190"
+
 # FQDN address for public API endpoints, registered with the external DNS
 # server to resolve to the public VIP address.
-external_api_net_fqdn: "placeholder.acrc.bris.ac.uk"
+external_api_net_fqdn: "api.dl.acrc.bris.ac.uk"
 
 ###############################################################################
 # Dummy variable to allow Ansible to accept this file.

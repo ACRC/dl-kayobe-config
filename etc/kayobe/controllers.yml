@@ -17,6 +17,7 @@ controller_network_interfaces: "{{ storage_network_interfaces + controller_extra
 
 # List of extra networks to which controller nodes are attached.
 controller_extra_network_interfaces:
+  - external_10g
   - external_api_net
 
 # List of network interfaces to which network nodes are attached.
