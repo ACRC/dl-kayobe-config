@@ -15,6 +15,10 @@ if [ ! -z ${KAYOBE_ENVIRONMENT:+x} ]; then
       KAYOBE_AUTOMATION_TEMPEST_CONF_OVERRIDES="${KAYOBE_AUTOMATION_CONFIG_PATH}/tempest/tempest-${KAYOBE_ENVIRONMENT}.overrides.conf"
   fi
 
+  if [[ "$KAYOBE_ENVIRONMENT" =~ "production" ]]; then
+    export KAYOBE_AUTOMATION_TEMPEST_LOADLIST=compute.2022.11-test-list.txt
+  fi
+
   if [[ "$KAYOBE_ENVIRONMENT" =~ "aio" ]]; then
     # Seem to get servers failing to spawn with higher concurrency
     export TEMPEST_CONCURRENCY=1
@@ -37,3 +41,6 @@ fi
 if [[ -f ${KAYOBE_AUTOMATION_REPO_ROOT}/etc/kolla/public-openrc.sh ]]; then
     export TEMPEST_OPENRC="$(< ${KAYOBE_AUTOMATION_REPO_ROOT}/etc/kolla/public-openrc.sh)"
 fi
+# export TEMPEST_OPENRC="/stack/kayobe-automation-env/src/kayobe-config/etc/kolla/public-openrc.sh"
+
+KAYOBE_AUTOMATION_BREAK=on-error

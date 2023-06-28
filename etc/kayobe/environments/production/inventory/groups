@@ -9,3 +9,6 @@ storage
 
 [rgws:children]
 storage
+
+[tempest_runner:children]
+seed-hypervisor
