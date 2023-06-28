@@ -33,7 +33,7 @@ power_mgmt_net_interface: "{{ external_admin_net_interface }}.{{ power_mgmt_net_
 # internal_net_interface: "bond0.{{ internal_net_vlan }}"
 
 # External API network IP information.
-external_api_net_interface: "{{ mgmt_bond_int_interface }}.{{ external_api_net_vlan }}"
+external_api_net_interface: "{{ mgmt_bond_ext_interface }}.{{ external_api_net_vlan }}"
 
 ###############################################################################
 # Dummy variable to allow Ansible to accept this file.
