@@ -3,7 +3,9 @@ kolla_enable_cinder: true
 kolla_enable_cinder_backup: true
 kolla_enable_manila: true
 kolla_enable_manila_backend_cephfs_native: true
-kolla_enable_neutron_provider_networks: true
+# Currently, we do not have a need for Neutron provider networks. If this
+# changes in the future, interfaces will need to be added to the computes.
+# kolla_enable_neutron_provider_networks: true
 kolla_enable_neutron_sriov: true
 kolla_enable_octavia: true
 kolla_enable_ovn: true
