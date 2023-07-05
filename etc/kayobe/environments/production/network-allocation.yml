@@ -1,6 +1,7 @@
 external_admin_net_ips:
   dl-ansible-01: 10.129.25.10
   dl-seed: 10.129.25.11
+  wazuh-server: 10.129.25.12
 external_api_net_ips:
   compute1: 10.129.26.135
   compute2: 10.129.26.136
@@ -78,6 +79,7 @@ provision_ctl_net_ips:
   dl-seed: 10.129.28.41
   gpu1: 10.129.28.31
   gpu2: 10.129.28.32
+  wazuh-server: 10.129.28.10
 storage_mgmt_net_ips:
   controller1: 10.129.26.75
   controller2: 10.129.26.76

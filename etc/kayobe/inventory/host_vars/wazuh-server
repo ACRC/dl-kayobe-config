@@ -1,0 +1,8 @@
+# Name of the infra VM.
+infra_vm_name: "wazuh-server"
+
+# Network interfaces
+provision_ctl_net_interface: "ens3"
+external_admin_net_interface: "ens2"
+
+infra_vm_root_image: "https://cloud-images.ubuntu.com/jammy/current/jammy-server-cloudimg-amd64.img"

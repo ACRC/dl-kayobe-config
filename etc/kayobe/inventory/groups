@@ -25,11 +25,15 @@ seed-hypervisor
 # Empty group to provide declaration of infra-vms group.
 
 [wazuh-manager]
-# Empty group to provide declaration of wazuh-manager group.
+wazuh-server
+
+[infra-vms:children]
+wazuh-manager
 
 [wazuh-agent:children]
 seed
 overcloud
+seed-hypervisor
 
 ###############################################################################
 # Overcloud groups.
