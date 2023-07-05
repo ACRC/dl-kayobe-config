@@ -47,7 +47,7 @@ filebeat_output_indexer_hosts:
   - "{{ indexer_network_host }}"
 
 # Dashboard variables
-dashboard_node_name: "{{ indexer_node_name }}"
+dashboard_node_name: "wazuh-dashboard"
 
 dashboard_server_host: "{{ 'external_admin_net' | net_ip }}"
 
