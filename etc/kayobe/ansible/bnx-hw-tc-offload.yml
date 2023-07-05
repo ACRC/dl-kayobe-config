@@ -1,0 +1,21 @@
+---
+- hosts: compute
+  tasks:
+  - name: Persist disabling of HW TC offloading for Broadcom NICs
+    ansible.builtin.copy:
+      dest: "/etc/udev/rules.d/71-bnx-hw-tc-disable.rules"
+      owner: root
+      group: root
+      mode: 0644
+      content: |
+        # Disable HW TC offloading for the Broadcom NICs,
+        # which don't appear capable of it but claim to be so
+        ACTION=="add|change", SUBSYSTEM=="net", KERNEL=="{{ external_10g_bond_slaves | join('|') }}", RUN+="/sbin/ethtool -K $name hw-tc-offload off"
+    become: true
+    notify: trigger udev event
+
+  handlers:
+  - name: trigger udev event
+    ansible.builtin.command:
+      cmd: "udevadm trigger -s net"
+    become: true

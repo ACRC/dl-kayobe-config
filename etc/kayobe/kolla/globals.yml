@@ -118,5 +118,7 @@ octavia_provider_agents: "ovn"
 #############################################################################
 # Performance
 
-openvswitch_hw_offload: yes
+openvswitch_hw_offload: true
 
+# Enable Distributed Virtual Router (DVR), for scalable north-south routing
+neutron_ovn_distributed_fip: true

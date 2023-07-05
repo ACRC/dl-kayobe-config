@@ -33,6 +33,7 @@ internal_net_name: "internal_net"
 # containing one item, external_net_name.
 external_net_names:
   - "external_10g"
+  - "hs_bond"
 
 # Name of the network used to expose the public OpenStack API endpoints.
 public_net_name: "external_api_net"
@@ -201,10 +202,10 @@ tunnel_net_name: "tenant_tunnel_net"
 # Network connectivity check configuration.
 
 # External IP address to check. Default is 8.8.8.8.
-#nc_external_ip:
+nc_external_ip: 127.0.0.1 # Effectively disables external check in kayobe network connectivity check
 
 # External hostname to check. Default is google.com.
-#nc_external_hostname:
+nc_external_hostname: localhost # Effectively disables external check in kayobe network connectivity check
 
 ###############################################################################
 # Dummy variable to allow Ansible to accept this file.
