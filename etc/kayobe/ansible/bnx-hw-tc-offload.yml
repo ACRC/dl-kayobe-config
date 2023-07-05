@@ -1,5 +1,7 @@
 ---
-- hosts: compute
+- hosts:
+    - compute
+    - controllers
   tasks:
   - name: Persist disabling of HW TC offloading for Broadcom NICs
     ansible.builtin.copy:
