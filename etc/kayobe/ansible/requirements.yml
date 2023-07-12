@@ -20,3 +20,6 @@ roles:
   - name: wazuh-ansible
     src: https://github.com/stackhpc/wazuh-ansible
     version: stackhpc
+  - name: ansible-lockdown.ubuntu22_cis
+    src: https://github.com/ansible-lockdown/UBUNTU22-CIS
+    version: 2bbaefb3de539fc475f8924fc494857a2845c3fd
