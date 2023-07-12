@@ -1,0 +1,14 @@
+# List of infra VM volume groups. See mrlesmithjr.manage-lvm role for
+# format.
+infra_vm_lvm_groups:
+  - vgname: "datavg"
+    disks:
+      - "/dev/vdb"
+    create: true
+    lvnames:
+      - lvname: 'lv_wazuh_logs'
+        size: "70%VG"
+        filesystem: "ext4"
+        mount: true
+        mntp: '/var/ossec/'
+        create: true

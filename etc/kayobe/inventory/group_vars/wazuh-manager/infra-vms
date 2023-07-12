@@ -1,0 +1,13 @@
+---
+# Memory in MB.
+infra_vm_memory_mb: 16384
+
+# Number of vCPUs.
+infra_vm_vcpus: 8
+
+# Capacity of the infra VM data volume.
+infra_vm_data_capacity: "200G"
+
+# Adding external/admin net for access to wazuh web dash
+infra_vm_extra_network_interfaces:
+    - "external_admin_net"
