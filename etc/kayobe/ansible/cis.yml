@@ -9,6 +9,7 @@
         name: cron
         state: present
       when: ansible_facts.distribution == 'Ubuntu'
+
     - name: Remove /etc/motd
       # See remediation in:
       # https://github.com/wazuh/wazuh/blob/bfa4efcf11e288c0a8809dc0b45fdce42fab8e0d/ruleset/sca/centos/8/cis_centos8_linux.yml#L777
