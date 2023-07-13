@@ -4,6 +4,10 @@
 ###############################################################################
 # Network definitions.
 
+# VLANs for internal tenant networks suitable for SRIOV and RDMA
+tenant_vlan_min: 1000
+tenant_vlan_max: 1199
+
 # Power/Management network IP information.
 power_mgmt_net_cidr: "10.129.24.0/24"
 power_mgmt_net_allocation_pool_start: "10.129.24.10"

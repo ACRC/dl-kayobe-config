@@ -28,9 +28,6 @@ storage_net_interface: "{{ hs_bond_interface }}.{{ storage_net_vlan }}"
 # swift_storage_net_bond_slaves:
 storage_mgmt_net_interface:  "{{ hs_bond_interface }}.{{ storage_mgmt_net_vlan }}"
 
-
-tenant_tunnel_net_interface: "{{ hs_bond_interface }}.{{ tenant_tunnel_net_vlan }}"
-
 # High speed
 hs_bond_bond_slaves:
   - enp37s0f0np0
