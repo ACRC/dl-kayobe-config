@@ -3,7 +3,7 @@
 
   tasks:
     - name: Ensure smartmon-tools, jq, nvme-cli and cron/cronie is installed
-      ansible.builtin.package:
+      package:
         name:
           - smartmontools
           - nvme-cli
