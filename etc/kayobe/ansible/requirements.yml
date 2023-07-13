@@ -9,6 +9,8 @@ collections:
   - name: stackhpc.linux
     source: git+https://github.com/stackhpc/ansible-collection-linux.git,preemptive/vgpu-iommu
     type: git
+  - name: stackhpc.hashicorp
+    version: 2.3.0
 roles:
   - src: stackhpc.sriov
     version: 0.2.0
